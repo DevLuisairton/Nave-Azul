@@ -1,0 +1,82 @@
+/* src/assets/css/pages/page_sobre.css */
+
+/* Estilos específicos para a página "Sobre a Nave Azul" */
+/* Você pode usar uma estrutura similar à page_cuidador.css ou page_tea.css,
+   com .page-container, .page-internal-header, e depois seções de conteúdo.
+*/
+
+#sobrePage .page-container { /* Exemplo de ID para a div da página Sobre */
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+#sobrePage .page-internal-header {
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    /* Pode usar uma cor de borda diferente, ex: nebula-purple */
+    border-bottom: 1px solid rgba(var(--nebula-purple-rgb), 0.25);
+}
+
+#sobrePage .page-title {
+    color: var(--nebula-purple);
+    text-shadow: 0 0 10px rgba(var(--nebula-purple-rgb), 0.5);
+}
+#sobrePage .page-title i {
+    margin-right: 15px;
+    color: var(--nebula-purple);
+}
+
+#sobrePage .page-subtitle {
+    color: rgba(var(--light-text-rgb), 0.85);
+    font-size: 1.15rem;
+}
+
+.about-nave-azul-section { /* Exemplo de classe para uma seção de conteúdo */
+    background: linear-gradient(170deg, rgba(var(--space-mid-blue-rgb), 0.15), rgba(var(--space-dark-blue-rgb), 0.25));
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.1);
+    border-radius: var(--border-radius-large, 16px);
+    padding: 30px 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 6px 20px rgba(var(--black-rgb), 0.15),
+                inset 0 0 8px rgba(var(--nebula-purple-rgb), 0.03);
+    animation: moduleSlideUp 0.6s var(--animation-medium) backwards;
+}
+
+.about-nave-azul-section h3 {
+    color: var(--nebula-purple);
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(var(--nebula-purple-rgb), 0.2);
+}
+
+.about-nave-azul-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(var(--light-text-rgb), 0.9);
+    margin-bottom: 15px;
+}
+
+/* Adaptações High Contrast para a Página Sobre */
+body.high-contrast #sobrePage .page-internal-header {
+    border-bottom-color: var(--hc-text) !important;
+}
+body.high-contrast #sobrePage .page-title,
+body.high-contrast #sobrePage .page-subtitle,
+body.high-contrast .about-nave-azul-section h3,
+body.high-contrast .about-nave-azul-section p {
+    color: var(--hc-text) !important; text-shadow: none !important;
+}
+body.high-contrast #sobrePage .page-title i { color: var(--hc-text) !important; }
+
+body.high-contrast .about-nave-azul-section {
+    background: var(--hc-background) !important;
+    border: 2px solid var(--hc-text) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+body.high-contrast .about-nave-azul-section h3 {
+    border-bottom-color: var(--hc-text) !important;
+}

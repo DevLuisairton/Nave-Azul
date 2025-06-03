@@ -1,0 +1,289 @@
+/* src/assets/css/pages/page_home.css */
+.home-container { /* Classe adicionada ao .container da #homePage */
+    position: relative;
+    padding-bottom: 80px;
+}
+
+.home-header {
+    text-align: center;
+    padding: 60px 0 40px;
+    color: var(--light-text);
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Para o brilho do astronauta não vazar demais */
+}
+
+.astronaut-container {
+    position: absolute;
+    top: 10px; /* Ajustar para melhor posicionamento */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    width: 100%; /* Para permitir que o astronauta flutue mais amplamente se desejar */
+    display: flex;
+    justify-content: center;
+    z-index: 0;
+    opacity: 0; /* Começa invisível */
+    animation: fadeInAstronaut 1s ease-out 0.5s forwards; /* Animação de entrada */
+}
+@keyframes fadeInAstronaut {
+    to { opacity: 0.7; }
+}
+
+.astronaut-icon {
+    font-size: 170px;
+    color: rgba(var(--ship-silver-rgb), 0.65);
+    animation: floatAstronaut 7s ease-in-out infinite; /* Referencia @keyframes de animations.css */
+    filter: drop-shadow(0 8px 20px rgba(var(--tech-cyan-rgb), 0.25));
+}
+
+.home-header .logo { /* Logo "Nave Azul" */
+    font-size: 3.8rem; /* Ajustado */
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.15;
+    background: linear-gradient(120deg, var(--tech-cyan), var(--star-yellow), var(--ship-silver), var(--tech-cyan));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: animatedGradientText 10s ease infinite, /* Referencia @keyframes */
+                 subtleTextShine 3.5s ease-in-out infinite alternate; /* Referencia @keyframes */
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 25px rgba(var(--tech-cyan-rgb), 0.2);
+}
+
+.home-header .subtitle {
+    font-size: 1.25rem; /* Ajustado */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    max-width: 680px;
+    margin: 15px auto 0; /* Aumentar margem superior */
+    position: relative;
+    z-index: 1;
+    color: rgba(var(--light-text-rgb), 0.9);
+    line-height: 1.6;
+}
+
+.welcome-section {
+    background: rgba(var(--space-mid-blue-rgb), 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-large, 16px); /* Borda maior */
+    padding: 40px 45px; /* Mais padding */
+    margin: 40px 0 50px;
+    box-shadow: 0 0 30px rgba(var(--tech-cyan-rgb), 0.1), inset 0 0 20px rgba(var(--space-dark-blue-rgb), 0.25);
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.1);
+    text-align: center;
+    animation: moduleSlideUp 0.6s var(--animation-medium) 0.2s backwards; /* Delay na entrada */
+}
+
+.welcome-message p {
+    font-size: 1.1rem; /* Texto um pouco maior */
+    margin-bottom: 18px;
+    line-height: 1.8;
+    color: rgba(var(--light-text-rgb), 0.95);
+}
+.welcome-message p:last-child { margin-bottom: 0; }
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 35px; /* Mais espaçamento */
+    margin: 60px 0; /* Mais margem vertical */
+}
+
+.action-card { /* Agora é uma tag <a> */
+    background: linear-gradient(150deg, rgba(var(--space-mid-blue-rgb), 0.45), rgba(var(--space-dark-blue-rgb), 0.65));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--light-text);
+    padding: 35px; /* Mais padding */
+    border-radius: var(--border-radius-large, 16px);
+    text-decoration: none;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--animation-medium), box-shadow var(--animation-medium), border-color var(--animation-medium);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.25);
+    display: flex; /* Para melhor controle do conteúdo interno */
+    flex-direction: column;
+    align-items: center;
+    animation: moduleSlideUp 0.6s var(--animation-medium) backwards;
+}
+/* Delay escalonado para os action cards */
+.action-buttons a.action-card:nth-child(1) { animation-delay: 0.3s; }
+.action-buttons a.action-card:nth-child(2) { animation-delay: 0.4s; }
+
+
+.action-card::before { /* Efeito de brilho ao passar por cima */
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--tech-cyan-rgb), 0.2) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    transform: rotate(0deg); /* Rotação inicial */
+    pointer-events: none;
+    animation: rotateShine 8s linear infinite paused; /* Pausado por padrão */
+}
+@keyframes rotateShine {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.action-card:hover::before {
+    opacity: 1;
+    animation-play-state: running; /* Inicia rotação no hover */
+}
+
+.action-card:hover {
+    transform: translateY(-10px) scale(1.02); /* Efeito de levantar mais sutil */
+    box-shadow: 0 18px 35px rgba(var(--black-rgb), 0.35), 0 0 25px rgba(var(--tech-cyan-rgb), 0.25);
+    border-color: rgba(var(--tech-cyan-rgb), 0.6);
+}
+
+.action-card-icon-wrapper {
+    width: 85px; /* Maior */
+    height: 85px;
+    margin: 0 auto 25px;
+    background-color: rgba(var(--tech-cyan-rgb), 0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(var(--tech-cyan-rgb), 0.35);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+.action-card:hover .action-card-icon-wrapper {
+    background-color: rgba(var(--tech-cyan-rgb), 0.25);
+    border-color: var(--tech-cyan);
+    transform: scale(1.05);
+}
+
+.action-card .icon {
+    font-size: 2.8rem; /* Ícones maiores */
+    color: var(--tech-cyan);
+    transition: transform 0.4s ease, color 0.3s ease;
+    /* animation: iconPulse 3s infinite ease-in-out; Removido pulso constante, foco no hover */
+}
+.action-card:hover .icon {
+    transform: scale(1.15) rotate(5deg);
+    color: var(--star-yellow);
+}
+
+.action-card h3 {
+    font-size: 1.5rem; /* Título do card maior */
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: var(--light-text);
+}
+.action-card p {
+    font-size: 0.95rem; /* Texto do card maior */
+    opacity: 0.85;
+    line-height: 1.7;
+    flex-grow: 1; /* Para que cards com mais/menos texto alinhem o botão/final */
+    margin-bottom: 0; /* Se não houver botão "Saiba Mais" */
+}
+
+/* Estilos para o card secundário */
+.action-card.secondary .action-card-icon-wrapper {
+    background-color: rgba(var(--star-yellow-rgb), 0.12);
+    border-color: rgba(var(--star-yellow-rgb), 0.35);
+}
+.action-card.secondary:hover .action-card-icon-wrapper {
+    background-color: rgba(var(--star-yellow-rgb), 0.25);
+    border-color: var(--star-yellow);
+}
+.action-card.secondary .icon { color: var(--star-yellow); }
+.action-card.secondary:hover {
+    border-color: rgba(var(--star-yellow-rgb), 0.6);
+    box-shadow: 0 18px 35px rgba(var(--black-rgb), 0.35), 0 0 25px rgba(var(--star-yellow-rgb), 0.25);
+}
+.action-card.secondary:hover::before { /* Brilho amarelo para o card secundário */
+     background: radial-gradient(circle, rgba(var(--star-yellow-rgb), 0.2) 0%, transparent 50%);
+}
+
+
+/* Seção "Nossa Missão" (About) */
+.about-section {
+    background: rgba(var(--space-mid-blue-rgb), 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: var(--border-radius-large, 16px);
+    padding: 40px 45px;
+    margin: 60px 0;
+    box-shadow: inset 0 0 20px rgba(var(--space-dark-blue-rgb), 0.3);
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.1);
+    animation: moduleSlideUp 0.6s var(--animation-medium) 0.5s backwards;
+}
+.about-section h2 {
+    color: var(--star-yellow); /* Destaque com amarelo */
+    margin-bottom: 25px;
+    font-size: 2rem; /* Maior */
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(var(--star-yellow-rgb), 0.3);
+}
+.about-content p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    margin-bottom: 18px;
+    color: rgba(var(--light-text-rgb), 0.9);
+}
+.about-content p:last-child { margin-bottom: 0; }
+
+/* Adaptações High Contrast para Home Page */
+body.high-contrast .home-header { min-height: auto; padding: 40px 0; background: var(--hc-background) !important;}
+body.high-contrast .astronaut-container { display: none; }
+body.high-contrast .home-header .logo {
+    background: none !important; -webkit-text-fill-color: var(--hc-text) !important;
+    color: var(--hc-text) !important; animation: none !important; font-size: 3rem; text-shadow: none !important;
+}
+body.high-contrast .home-header .subtitle { color: var(--hc-text) !important; }
+body.high-contrast .welcome-section,
+body.high-contrast .about-section {
+    background: var(--hc-background) !important; color: var(--hc-text) !important;
+    border: 2px solid var(--hc-text) !important; box-shadow: none !important; backdrop-filter: none !important;
+}
+body.high-contrast .welcome-message p,
+body.high-contrast .about-content p { color: var(--hc-text) !important; }
+body.high-contrast .action-card {
+    background: var(--hc-background) !important; color: var(--hc-text) !important;
+    border: 2px solid var(--hc-text) !important; box-shadow: none !important; backdrop-filter: none !important;
+}
+body.high-contrast .action-card::before { display: none; }
+body.high-contrast .action-card-icon-wrapper {
+    background-color: var(--hc-background) !important; border: 1px solid var(--hc-text) !important;
+}
+body.high-contrast .action-card .icon { color: var(--hc-text) !important; animation: none !important; }
+body.high-contrast .action-card h3 { color: var(--hc-text) !important; }
+body.high-contrast .about-section h2 { color: var(--hc-text) !important; text-shadow: none !important;}
+
+
+@media (max-width: 768px) {
+    .home-header { padding: 50px 0 30px; min-height: 300px; }
+    .astronaut-icon { font-size: 130px; }
+    .home-header .logo { font-size: 3rem; }
+    .home-header .subtitle { font-size: 1.15rem; }
+    .welcome-section, .about-section { padding: 30px 25px; }
+    .action-card { padding: 30px 25px; }
+    .action-card-icon-wrapper { width: 75px; height: 75px; margin-bottom: 20px; }
+    .action-card .icon { font-size: 2.2rem; }
+    .action-card h3 { font-size: 1.3rem; }
+    .about-section h2 { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+    .home-header .logo { font-size: 2.5rem; }
+    .home-header .subtitle { font-size: 1rem; }
+    .astronaut-icon { font-size: 100px; }
+    .action-buttons { grid-template-columns: 1fr; gap: 25px; } /* Coluna única */
+}

@@ -1,0 +1,465 @@
+/* src/assets/css/pages/page_tea.css */
+
+/* Estilo Geral para a Página Módulo de Exploração */
+#teaPage .page-container.exploration-bay { /* Classe adicionada no HTML */
+    padding-top: 10px; /* Reduzido, pois o header interno já tem padding */
+    padding-bottom: 60px;
+}
+
+#teaPage .page-internal-header {
+    margin-bottom: 40px; /* Ajustado */
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.2);
+}
+
+#teaPage .page-title i.fa-rocket-launch { /* Ícone específico para o Módulo de Exploração */
+    margin-right: 15px;
+    vertical-align: middle;
+    font-size: 0.9em;
+    color: var(--tech-cyan); /* Garante a cor do ícone */
+}
+
+
+/* Estilo para os Módulos de Exploração (Seções) */
+.exploration-module {
+    background: linear-gradient(170deg, rgba(var(--space-mid-blue-rgb, 25, 42, 76), 0.3), rgba(var(--space-dark-blue-rgb, 12, 22, 39), 0.45));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--ship-silver-rgb, 192, 197, 206), 0.15);
+    border-radius: var(--border-radius-large, 16px);
+    padding: 25px 30px; /* Padding ajustado */
+    margin-bottom: 40px;
+    box-shadow: 0 8px 30px rgba(var(--black-rgb, 10, 10, 20), 0.3),
+                inset 0 0 12px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.04);
+    animation: moduleSlideUp 0.7s var(--animation-slow) backwards;
+    /* animation-delay é definido via JS ou inline style para entrada escalonada */
+}
+/* Aplica o delay de animação via JS para melhor controle */
+/* .exploration-module:nth-child(odd) { animation-delay: 0.1s; }
+.exploration-module:nth-child(even) { animation-delay: 0.2s; } */
+
+
+/* Estilos para botões futuristas genéricos (já em config_global ou main_layout, mas pode ter variações) */
+.futuristic-button {
+    background: linear-gradient(145deg, rgba(var(--tech-cyan-rgb), 0.75), rgba(var(--primary-blue-rgb, 74, 144, 226), 0.65)); /* Usar primary-blue antigo como fallback */
+    color: var(--pure-white, #FFF);
+    border: 1px solid rgba(var(--tech-cyan-rgb), 0.45);
+    padding: 10px 20px;
+    border-radius: var(--border-radius, 10px);
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(var(--black-rgb, 10, 10, 20), 0.25);
+    box-shadow: 0 3px 8px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.2),
+                inset 0 1px 0px rgba(var(--pure-white-rgb, 255, 255, 255), 0.08);
+    transition: all var(--animation-fast), transform 0.1s ease-out;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.futuristic-button:hover {
+    background: linear-gradient(145deg, rgb(var(--tech-cyan-rgb)), rgb(var(--primary-blue-rgb, 74, 144, 226)));
+    box-shadow: 0 5px 15px rgba(var(--tech-cyan-rgb), 0.3),
+                inset 0 1px 1px rgba(var(--pure-white-rgb), 0.12);
+    transform: translateY(-2px);
+}
+.futuristic-button:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 5px rgba(var(--tech-cyan-rgb), 0.2),
+                inset 0 1px 2px rgba(var(--black-rgb), 0.15);
+}
+.futuristic-button.small-btn {
+    padding: 7px 14px;
+    font-size: 0.88rem;
+    border-radius: 8px;
+}
+
+/* 1. Jogo de Reconhecimento Emocional */
+.game-interface-placeholder,
+.routine-builder-placeholder,
+.communication-grid-placeholder,
+.sensory-zone-placeholder,
+.zen-animation-placeholder {
+    background-color: rgba(var(--space-dark-blue-rgb), 0.35);
+    border: 1px dashed rgba(var(--ship-silver-rgb), 0.25);
+    padding: 25px;
+    border-radius: var(--border-radius, 10px);
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(var(--light-text-rgb), 0.75);
+    margin-top: 15px; /* Espaço após descrição */
+}
+.emotion-display img {
+    width: 160px; /* Um pouco maior */
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid var(--tech-cyan); /* Borda mais grossa */
+    box-shadow: 0 0 20px rgba(var(--tech-cyan-rgb), 0.45);
+    background-color: rgba(var(--space-dark-blue-rgb), 0.5); /* Fundo para a imagem placeholder */
+}
+#emotionGameInstruction {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+.emotion-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.emotion-option-btn { /* Herda de .futuristic-button */
+    min-width: 120px;
+}
+.emotion-option-btn i { font-size: 1.1em; }
+.emotion-feedback {
+    margin-top: 10px;
+    font-style: italic;
+    min-height: 1.5em;
+    font-weight: 500;
+}
+.emotion-score {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--star-yellow);
+}
+
+/* 2. Rotinas Interativas */
+.routine-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(var(--ship-silver-rgb), 0.1);
+}
+.routine-list-header h4 {
+    color: var(--light-text);
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+.routine-list { list-style: none; padding: 0; }
+.routine-task-item {
+    background-color: rgba(var(--ship-silver-rgb), 0.08);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    transition: background-color var(--animation-fast), opacity 0.3s ease;
+    border-left: 4px solid transparent; /* Para indicar estado */
+}
+.routine-task-item:hover {
+    background-color: rgba(var(--ship-silver-rgb), 0.12);
+}
+.routine-task-item.completed {
+    background-color: rgba(var(--gentle-green-rgb), 0.15);
+    /* text-decoration: line-through; opcional */
+    opacity: 0.7;
+    border-left-color: var(--gentle-green);
+}
+.routine-task-item.completed label {
+    text-decoration: line-through;
+    color: rgba(var(--light-text-rgb), 0.65);
+}
+.routine-task-item input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.4);
+    accent-color: var(--tech-cyan);
+    cursor: pointer;
+}
+.routine-task-item label { flex-grow: 1; cursor: pointer; font-size: 0.95rem; }
+.routine-task-item label i {
+    margin-right: 10px;
+    color: var(--tech-cyan);
+    width: 20px; /* Alinhamento */
+    text-align: center;
+}
+.routine-task-item.completed label i { color: var(--gentle-green); }
+.task-reward-visual {
+    font-size: 1.3rem;
+    color: var(--star-yellow);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.routine-task-item.completed .task-reward-visual { opacity: 1; transform: scale(1); }
+.routine-empty-state {
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    color: rgba(var(--light-text-rgb),0.6);
+}
+.routine-placeholder-text { font-style: italic; font-size: 0.9rem; margin-top: 15px; }
+
+/* 3. Zona do Silêncio (Respiração e Áudio) */
+.tool-item-title {
+    font-size: 1.35rem; /* Ajustado */
+    font-weight: 500;
+    color: var(--light-text);
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.tool-item-title i { margin-right: 10px; color: var(--tech-cyan); }
+
+.breathing-area { padding: 20px 0; }
+.breathing-circle {
+    width: 190px; height: 190px; border-width: 6px;
+    border-color: var(--tech-cyan);
+    box-shadow: 0 0 25px rgba(var(--tech-cyan-rgb), 0.35), inset 0 0 18px rgba(var(--tech-cyan-rgb), 0.12);
+}
+.breathing-circle-inner { background: rgba(var(--tech-cyan-rgb), 0.12); }
+/* As classes de animação .inhaling, .holding, etc. devem ser adicionadas ao CSS se você quiser
+   controlar as cores da borda do .breathing-circle diretamente com CSS em cada fase */
+.breathing-circle.inhaling { border-color: var(--star-yellow); }
+.breathing-circle.holding { border-color: var(--star-yellow); }
+.breathing-circle.exhaling { border-color: var(--nebula-purple); }
+.breathing-circle.paused-breath { border-color: var(--tech-cyan); }
+
+.breathing-text-container { text-align: center; }
+#breathingGuideText { font-size: 1.4rem; font-weight: 600; color: var(--star-yellow); margin-bottom: 5px;}
+#breathingInstructionText { font-size: 0.9rem; color: rgba(var(--light-text-rgb), 0.75); }
+.breathing-controls .control-button { min-width: 130px; /* Herda .futuristic-button */ }
+
+.audio-player {
+    background: rgba(var(--ship-silver-rgb), 0.04);
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.12);
+    padding: 25px;
+    border-radius: var(--border-radius, 10px);
+}
+.audio-button { /* Herda .futuristic-button */
+    padding: 12px 22px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    background: linear-gradient(145deg, rgba(var(--gentle-green-rgb),0.7), rgba(var(--primary-blue-rgb, 74,144,226),0.6)); /* Cores diferentes para áudio */
+    border-color: rgba(var(--gentle-green-rgb),0.4);
+    box-shadow: 0 3px 8px rgba(var(--gentle-green-rgb),0.15), inset 0 1px 0px rgba(var(--white-rgb),0.1);
+}
+.audio-button:hover {
+    background: linear-gradient(145deg, rgb(var(--gentle-green-rgb)), rgb(var(--primary-blue-rgb, 74,144,226)));
+    border-color: var(--gentle-green);
+    box-shadow: 0 5px 15px rgba(var(--gentle-green-rgb),0.25), inset 0 1px 1px rgba(var(--white-rgb),0.15);
+}
+.audio-button.playing {
+    background: linear-gradient(145deg, rgb(var(--star-yellow-rgb)), var(--soft-orange, rgb(255,159,67)));
+    color: var(--space-dark-blue);
+    border-color: rgba(var(--star-yellow-rgb), 0.5);
+    box-shadow: 0 3px 8px rgba(var(--star-yellow-rgb), 0.3), inset 0 1px 1px rgba(var(--white-rgb), 0.1);
+}
+.audio-button.playing:hover {
+    background: linear-gradient(145deg, var(--soft-orange, rgb(255,159,67)), rgb(var(--star-yellow-rgb)));
+}
+.zen-animation-placeholder {
+    min-height: 180px;
+    border-color: rgba(var(--nebula-purple-rgb), 0.3);
+    color: rgba(var(--light-text-rgb), 0.65);
+    box-shadow: inset 0 0 15px rgba(var(--nebula-purple-rgb), 0.1);
+}
+
+
+/* 5. Comunicação Alternativa */
+.communication-grid-placeholder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Cards menores */
+    gap: 15px;
+}
+.comm-card-btn { /* Herda .futuristic-button */
+    padding: 18px 10px;
+    font-size: 0.9rem;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 110px;
+    background: linear-gradient(145deg, rgba(var(--soft-purple-rgb), 0.7), rgba(var(--primary-blue-rgb, 74,144,226),0.5));
+    border-color: rgba(var(--soft-purple-rgb),0.4);
+}
+.comm-card-btn:hover {
+    background: linear-gradient(145deg, rgb(var(--soft-purple-rgb)), rgb(var(--primary-blue-rgb, 74,144,226)));
+    border-color: var(--soft-purple);
+}
+.comm-card-btn i { font-size: 1.8em; margin-bottom: 5px; }
+
+
+/* Seção de Jogos (Holodeck Recreativo-Educacional) */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Ajustado */
+    gap: 25px;
+    margin-top: 20px;
+}
+.game-card {
+    background: linear-gradient(170deg, rgba(var(--space-mid-blue-rgb), 0.35), rgba(var(--nebula-purple-rgb), 0.25));
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.2);
+    border-radius: var(--border-radius, 10px);
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(var(--black-rgb), 0.25);
+    transition: transform var(--animation-medium), box-shadow var(--animation-medium);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para alinhar o status badge em baixo */
+}
+.game-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(var(--black-rgb), 0.35), 0 0 18px rgba(var(--nebula-purple-rgb), 0.25);
+}
+.game-icon-wrapper {
+    width: 65px; height: 65px; margin: 0 auto 18px;
+    background-color: rgba(var(--nebula-purple-rgb), 0.15);
+    border: 2px solid rgba(var(--nebula-purple-rgb), 0.35);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; color: var(--nebula-purple);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.game-card:hover .game-icon-wrapper {
+    background-color: rgba(var(--nebula-purple-rgb), 0.25);
+    color: var(--star-yellow);
+    transform: rotate(10deg) scale(1.1);
+}
+.game-card h4 { font-size: 1.15rem; font-weight: 500; color: var(--light-text); margin-bottom: 10px; }
+.game-card p { font-size: 0.88rem; color: rgba(var(--light-text-rgb), 0.75); line-height: 1.6; margin-bottom: 18px; flex-grow: 1;}
+.game-status-badge {
+    display: inline-block;
+    background-color: var(--tech-cyan);
+    color: var(--space-dark-blue);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    align-self: center; /* Centraliza o badge */
+}
+
+/* Planejador de Missões Diárias (Rotinas Visuais) */
+.visual-routines .futuristic-placeholder {
+    border-color: var(--tech-cyan);
+    background: rgba(var(--tech-cyan-rgb), 0.04);
+    color: var(--tech-cyan);
+    padding: 30px; /* Reduzido */
+    box-shadow: 0 0 25px rgba(var(--tech-cyan-rgb), 0.12);
+}
+.visual-routines .futuristic-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 10px rgba(var(--tech-cyan-rgb), 0.45));
+}
+.visual-routines .futuristic-placeholder p {
+    font-size: 0.95rem;
+    color: rgba(var(--light-text-rgb), 0.8);
+}
+.visual-routines .futuristic-placeholder img {
+    border-color: rgba(var(--tech-cyan-rgb), 0.2) !important; /* Força a borda da imagem placeholder */
+}
+
+
+/* High Contrast para a Página TEA (Módulo de Exploração) */
+body.high-contrast .exploration-module {
+    background: var(--hc-background) !important;
+    border: 2px solid var(--hc-text) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+body.high-contrast .exploration-module .section-title,
+body.high-contrast .exploration-module .section-description,
+body.high-contrast .tool-item-title,
+body.high-contrast .routine-list-header h4,
+body.high-contrast .routine-task-item label,
+body.high-contrast .game-interface-placeholder,
+body.high-contrast .zen-animation-placeholder,
+body.high-contrast .routine-placeholder-text,
+body.high-contrast .symbol-card h4,
+body.high-contrast .symbol-card p,
+body.high-contrast .game-card h4,
+body.high-contrast .game-card p,
+body.high-contrast .futuristic-placeholder p,
+body.high-contrast #emotionGameInstruction,
+body.high-contrast .emotion-feedback,
+body.high-contrast .emotion-score {
+    color: var(--hc-text) !important;
+    text-shadow: none !important;
+}
+body.high-contrast .exploration-module .section-title {
+    border-bottom-color: var(--hc-text) !important;
+}
+body.high-contrast .exploration-module .section-title i,
+body.high-contrast .tool-item-title i,
+body.high-contrast .routine-task-item label i,
+body.high-contrast .symbol-card .icon,
+body.high-contrast .game-icon-wrapper,
+body.high-contrast .futuristic-placeholder i {
+    color: var(--hc-text) !important;
+    filter: none !important;
+}
+body.high-contrast .futuristic-button,
+body.high-contrast .emotion-option-btn,
+body.high-contrast .comm-card-btn,
+body.high-contrast .control-button,
+body.high-contrast .audio-button {
+    background: var(--hc-background) !important;
+    color: var(--hc-text) !important;
+    border: 1px solid var(--hc-text) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+body.high-contrast .futuristic-button:hover,
+body.high-contrast .emotion-option-btn:hover,
+body.high-contrast .comm-card-btn:hover,
+body.high-contrast .control-button:hover,
+body.high-contrast .audio-button:hover {
+    background: var(--hc-highlight-bg) !important;
+}
+body.high-contrast .audio-button.playing {
+    background: var(--hc-highlight-bg) !important;
+    border-width: 2px !important; /* Destaque maior */
+}
+
+body.high-contrast .emotion-display img { border-color: var(--hc-text) !important; box-shadow: none !important; }
+body.high-contrast .routine-task-item { background-color: var(--hc-background) !important; border-left-color: transparent !important; }
+body.high-contrast .routine-task-item.completed { background-color: var(--hc-highlight-bg) !important; border-left-color: var(--hc-text) !important;}
+body.high-contrast .routine-task-item input[type="checkbox"] { accent-color: var(--hc-text) !important; }
+body.high-contrast .task-reward-visual { color: var(--hc-text) !important; }
+
+body.high-contrast .breathing-circle { border-color: var(--hc-text) !important; box-shadow: none !important; }
+body.high-contrast .breathing-circle-inner { display: none; }
+body.high-contrast #breathingGuideText, body.high-contrast #breathingInstructionText { color: var(--hc-text) !important; }
+
+body.high-contrast .audio-player { background: var(--hc-background) !important; border-color: var(--hc-text) !important; }
+
+body.high-contrast .game-card { background: var(--hc-background) !important; border-color: var(--hc-text) !important; box-shadow: none !important; }
+body.high-contrast .game-icon-wrapper { background-color: var(--hc-background) !important; border-color: var(--hc-text) !important; }
+body.high-contrast .game-status-badge { background-color: var(--hc-text) !important; color: var(--hc-background) !important; }
+
+body.high-contrast .visual-routines .futuristic-placeholder {
+    border-color: var(--hc-text) !important;
+    background: var(--hc-background) !important;
+    color: var(--hc-text) !important;
+    box-shadow: none !important;
+}
+body.high-contrast .visual-routines .futuristic-placeholder img {
+    border-color: var(--hc-text) !important;
+    opacity: 1 !important;
+}
+
+
+@media (max-width: 768px) {
+    .exploration-module { padding: 25px 20px; margin-bottom: 30px;}
+    .exploration-module .section-title { font-size: 1.5rem; }
+    .symbol-card .icon { font-size: 2.5rem; }
+    .games-grid { grid-template-columns: 1fr; } /* Cards de jogo em coluna única no mobile */
+    .breathing-circle { width: 160px; height: 160px; }
+    #breathingGuideText { font-size: 1.2rem; }
+    .communication-grid-placeholder { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+    .comm-card-btn { min-height: 90px; }
+    .comm-card-btn i { font-size: 1.5em; }
+}

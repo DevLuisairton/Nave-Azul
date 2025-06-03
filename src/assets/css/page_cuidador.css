@@ -1,0 +1,218 @@
+/* src/assets/css/pages/page_cuidador.css */
+
+/* Estilo Geral para a Página Apoio ao Cuidador */
+#cuidadorPage .page-container {
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+#cuidadorPage .page-internal-header {
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(var(--star-yellow-rgb), 0.25); /* Cor diferente para diferenciar a seção */
+}
+
+#cuidadorPage .page-title {
+    color: var(--star-yellow); /* Cor do título da página */
+    text-shadow: 0 0 10px rgba(var(--star-yellow-rgb), 0.5);
+}
+#cuidadorPage .page-title i { /* Ícone específico, se houver */
+    margin-right: 15px;
+    color: var(--star-yellow);
+}
+
+#cuidadorPage .page-subtitle {
+    color: rgba(var(--light-text-rgb), 0.85);
+    font-size: 1.15rem;
+}
+
+/* Estilo para os Módulos/Seções de Conteúdo */
+.support-module { /* Similar ao exploration-module, mas pode ter variações */
+    background: linear-gradient(170deg, rgba(var(--space-mid-blue-rgb), 0.2), rgba(var(--space-dark-blue-rgb), 0.35));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(var(--ship-silver-rgb), 0.12);
+    border-radius: var(--border-radius-large, 16px);
+    padding: 30px 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 25px rgba(var(--black-rgb), 0.2),
+                inset 0 0 10px rgba(var(--star-yellow-rgb), 0.04);
+    animation: moduleSlideUp 0.6s var(--animation-medium) backwards;
+}
+.support-module .section-title {
+    color: var(--star-yellow); /* Título da seção com cor de destaque */
+    border-bottom-color: rgba(var(--star-yellow-rgb), 0.25);
+    text-shadow: 0 0 8px rgba(var(--star-yellow-rgb), 0.3);
+}
+.support-module .section-title i {
+    color: var(--star-yellow);
+    text-shadow: 0 0 6px rgba(var(--star-yellow-rgb), 0.4);
+}
+
+/* Grid de Recursos (onde os resource-cards ficam) */
+.resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px; /* Espaço após a descrição da seção */
+}
+
+.resource-card {
+    background: rgba(var(--ship-silver-rgb), 0.05);
+    padding: 25px;
+    border-radius: var(--border-radius, 10px);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--animation-medium), box-shadow var(--animation-medium), border-left-color 0.4s ease;
+    border-left: 5px solid var(--star-yellow); /* Borda de destaque */
+    display: flex;
+    flex-direction: column;
+}
+.resource-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-left-color: var(--tech-cyan);
+}
+
+.resource-card h4 { /* Título dentro do card de recurso */
+    color: var(--star-yellow);
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.resource-card:hover h4 {
+    color: var(--tech-cyan);
+}
+.resource-card h4 i {
+    font-size: 1.1em; /* Ícone um pouco maior que o texto do título */
+}
+
+.resource-card p { /* Descrição dentro do card */
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(var(--light-text-rgb), 0.8);
+    margin-bottom: 15px;
+    flex-grow: 1; /* Para alinhar botões se os parágrafos tiverem tamanhos diferentes */
+}
+
+.resource-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+.resource-card li {
+    padding: 8px 0;
+    padding-left: 28px; /* Espaço para o ícone */
+    position: relative;
+    font-size: 0.95rem;
+}
+.resource-card li::before {
+    content: '\f058'; /* Ícone de círculo com check (Font Awesome Solid) */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 9px; /* Ajuste vertical */
+    color: var(--star-yellow);
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+.resource-card:hover li::before {
+    color: var(--tech-cyan);
+}
+
+.resource-card li a {
+    text-decoration: none;
+    color: rgba(var(--light-text-rgb), 0.9);
+    transition: color var(--animation-fast), letter-spacing 0.3s ease;
+}
+.resource-card li a:hover {
+    color: var(--tech-cyan);
+    letter-spacing: 0.3px; /* Leve expansão no hover */
+    text-decoration: underline;
+}
+
+.btn-resource { /* Botão para links externos ou downloads */
+    display: inline-block;
+    background: linear-gradient(145deg, rgba(var(--star-yellow-rgb), 0.8), rgba(var(--soft-orange-rgb, 255,159,67), 0.7));
+    color: var(--space-dark-blue);
+    padding: 10px 22px; /* Ajustado */
+    border-radius: 20px; /* Mais arredondado */
+    text-decoration: none;
+    font-weight: 600; /* Mais destaque */
+    transition: all var(--animation-medium);
+    margin-top: 15px;
+    text-align: center;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px rgba(var(--star-yellow-rgb), 0.2), inset 0 1px 1px rgba(var(--white-rgb), 0.1);
+}
+.btn-resource:hover {
+    background: linear-gradient(145deg, rgb(var(--star-yellow-rgb)), rgb(var(--soft-orange-rgb, 255,159,67)));
+    color: var(--pure-black);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 5px 15px rgba(var(--star-yellow-rgb), 0.3), inset 0 1px 1px rgba(var(--white-rgb), 0.15);
+    border-color: rgba(var(--star-yellow-rgb),0.5);
+}
+.btn-resource i { margin-right: 8px; }
+
+/* High Contrast para a Página Cuidador */
+body.high-contrast #cuidadorPage .page-internal-header {
+    border-bottom-color: var(--hc-text) !important;
+}
+body.high-contrast #cuidadorPage .page-title,
+body.high-contrast #cuidadorPage .page-subtitle {
+    color: var(--hc-text) !important; text-shadow: none !important;
+}
+body.high-contrast #cuidadorPage .page-title i { color: var(--hc-text) !important; }
+
+body.high-contrast .support-module {
+    background: var(--hc-background) !important;
+    border: 2px solid var(--hc-text) !important;
+    box-shadow: none !important;
+}
+body.high-contrast .support-module .section-title,
+body.high-contrast .support-module .section-description,
+body.high-contrast .resource-card h4,
+body.high-contrast .resource-card p,
+body.high-contrast .resource-card li a {
+    color: var(--hc-text) !important; text-shadow: none !important;
+}
+body.high-contrast .support-module .section-title { border-bottom-color: var(--hc-text) !important; }
+body.high-contrast .support-module .section-title i,
+body.high-contrast .resource-card h4 i,
+body.high-contrast .resource-card li::before {
+    color: var(--hc-text) !important; text-shadow: none !important;
+}
+body.high-contrast .resource-card {
+    background: var(--hc-background) !important;
+    border-left-color: var(--hc-text) !important;
+}
+body.high-contrast .resource-card li a:hover {
+    color: var(--hc-link-hover) !important;
+    background-color: var(--hc-highlight-bg) !important;
+}
+body.high-contrast .btn-resource {
+    background: var(--hc-background) !important;
+    color: var(--hc-text) !important;
+    border: 1px solid var(--hc-text) !important;
+    box-shadow: none !important;
+}
+body.high-contrast .btn-resource:hover {
+    background: var(--hc-highlight-bg) !important;
+}
+
+@media (max-width: 768px) {
+    .support-module, .resource-card {
+        padding: 25px 20px;
+    }
+    .btn-resource {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+    }
+    .resource-grid {
+        gap: 25px;
+    }
+}

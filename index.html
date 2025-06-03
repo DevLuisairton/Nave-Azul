@@ -4,320 +4,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="src/assets/img/logo_fundo_trasnparente.png" type="image/x-icon" />
-    <title>Nave Azul</title>
-    <link rel="stylesheet" href="src/assets/css/config_global.css">
-    <link rel="stylesheet" href="src/assets/css/header.css">
-    <link rel="stylesheet" href="src/assets/css/footer.css">
-    <link rel="stylesheet" href="src/assets/css/accessibility.css">
-    <link rel="stylesheet" href="src/assets/css/main.css">
-    <script src="src/assets/js/menu_hamburguer.js" defer></script>
-    <script src="src/assets/js/accessibility.js" defer></script>
-    <script src="src/assets/js/card_nivel_TEA.js" defer></script>
+    <title>Portal Nave Azul - Navegando juntos pelo espectro do autismo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=OpenDyslexic:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/src/assets/img/logo_fundo_branco.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/src/assets/css/config_global.css">
+    <link rel="stylesheet" href="/src/assets/css/header.css">
+    <link rel="stylesheet" href="/src/assets/css/main_layout.css">
+    <link rel="stylesheet" href="/src/assets/css/page_home.css">
+    <link rel="stylesheet" href="/src/assets/css/accessibility.css">
+    <link rel="stylesheet" href="/src/assets/css/footer.css">
+    <script src="/src/assets/js/header.js" defer></script>
+    <script src="/src/assets/js/accessibility_handler.js" defer></script>
+    <script src="/src/assets/js/footer.js" defer></script>
+    <script src="/src/assets/js/main_script.js" defer></script>
+    <script src="/src/assets/js/page_home.js" defer></script>
+
 </head>
 
 <body>
-    <header class="header" role="banner">
-        <div class="header-container">
-            <nav class="nav-container" aria-label="Navegação principal">
-                <a href="#" class="logo" aria-label="Nave Azul - Página inicial">
-                    <svg class="logo-icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2L4 7v10l8 5 8-5V7L12 2zm0 2.5L18 8v8l-6 3.5-6-3.5V8l6-3.5z" />
-                        <path d="M12 12l-6-3.5v7l6 3.5 6-3.5v-7L12 12z" />
-                    </svg>
-                    <span class="logo-text">Nave Azul</span>
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <a href="#" data-page="homePage">
+                    <i class="fas fa-rocket nav-logo-icon"></i>
+                    <span>Nave Azul</span>
                 </a>
-
-                <div class="nav-right">
-
-                    <button class="hamburger" aria-label="Abrir menu de navegação" aria-expanded="false"
-                        aria-controls="nav-menu">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                </div>
-
-                <ul class="nav-menu" id="nav-menu" role="menubar">
-                    <li role="none">
-                        <a href="#inicio" role="menuitem" class="nav-link" data-active="false">
-                            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                            </svg>
-                            <span>Início</span>
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a href="#jornada" role="menuitem" class="nav-link" data-active="false">
-                            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" />
-                            </svg>
-                            <span>Minha Jornada</span>
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a href="#ajuda" role="menuitem" class="nav-link" data-active="false">
-                            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" />
-                            </svg>
-                            <span>Ajuda</span>
-                        </a>
-                    </li>
-                    <li role="none">
-                        <a href="#sobre" role="menuitem" class="nav-link" data-active="false">
-                            <svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                            </svg>
-                            <span>Sobre</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="main-container" id="inicio">
-        <h1 class="main-title">Bem-vindo à Nave Azul</h1>
-        <p class="subtitle">Um espaço seguro e acolhedor para sua jornada no espectro autista</p>
-
-        <div class="avatar-container">
-            <div class="avatar" role="img" aria-label="Astronauta amigável representando a Nave Azul"></div>
-        </div>
-
-
-        <section class="tea-levels" aria-labelledby="levels-heading">
-            <h2 id="levels-heading">Escolha seu Nível de Apoio</h2>
-
-            <div class="levels-container" role="group" aria-labelledby="levels-heading">
-                <div class="level-card suave" tabindex="0" role="button" aria-describedby="suave-desc">
-                    <div class="level-icon" role="img" aria-label="Nível suave">🌱</div>
-                    <h3 class="level-title">Nível 1 - Suave</h3>
-                    <p class="level-description" id="suave-desc">
-                        Necessita apoio para organização e planejamento.
-                        Dificuldades sutis na comunicação social.
-                    </p>
-                </div>
-
-                <div class="level-card medio" tabindex="0" role="button" aria-describedby="medio-desc">
-                    <div class="level-icon" role="img" aria-label="Nível médio">🌿</div>
-                    <h3 class="level-title">Nível 2 - Médio</h3>
-                    <p class="level-description" id="medio-desc">
-                        Necessita apoio substancial para comunicação e
-                        adaptação a mudanças na rotina.
-                    </p>
-                </div>
-
-                <div class="level-card alto" tabindex="0" role="button" aria-describedby="alto-desc">
-                    <div class="level-icon" role="img" aria-label="Nível alto">🌳</div>
-                    <h3 class="level-title">Nível 3 - Alto</h3>
-                    <p class="level-description" id="alto-desc">
-                        Necessita apoio muito substancial para
-                        comunicação e atividades diárias.
-                    </p>
-                </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Painel de Acessibilidade -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/index.html" class="nav-item active-link">Início</a></li>
+                <li><a href="/src/pages/page_tea.html" class="nav-item">Universo TEA</a></li>
+                <li><a href="/src/pages/page_cuidador.html" class="nav-item">Apoio ao Cuidador</a></li>
+                <li><a href="/src/pages/page_sobre.html" class="nav-item">Sobre</a>
+                </li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+                <span class="hamburger-bar"></span>
+            </button>
+        </div>
+    </nav>
     <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Abrir painel de acessibilidade"
-        title="Ferramentas de Acessibilidade">
-        ♿
+        aria-expanded="false">
+        <i class="fas fa-universal-access"></i>
     </button>
 
-    <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="panel-title"
+    <!--Acessibilidade-->
+    <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityPanelTitle"
         aria-hidden="true">
-        <div class="panel-header">
-            <h2 class="panel-title" id="panel-title">Acessibilidade</h2>
-            <button class="panel-close" id="panelClose" aria-label="Fechar painel de acessibilidade">✕</button>
-        </div>
-
-        <!-- Tamanho da Fonte -->
+        <h3 id="accessibilityPanelTitle">Ajustes de Acessibilidade</h3>
         <div class="accessibility-option">
-            <label class="option-label">Tamanho da Fonte</label>
-            <p class="option-description">Ajuste o tamanho do texto para melhor legibilidade</p>
-            <div class="font-controls">
-                <button class="font-btn" id="fontDecrease" aria-label="Diminuir fonte">A-</button>
-                <div class="font-size-display" id="fontSizeDisplay" aria-live="polite">100%</div>
-                <button class="font-btn" id="fontIncrease" aria-label="Aumentar fonte">A+</button>
-                <button class="font-btn" id="fontReset" aria-label="Resetar fonte">Reset</button>
+            <label for="decreaseFont">Tamanho da Fonte</label>
+            <div class="font-size-controls">
+                <button class="accessibility-button" id="decreaseFont" aria-label="Diminuir fonte">A-</button>
+                <button class="accessibility-button" id="increaseFont" aria-label="Aumentar fonte">A+</button>
             </div>
         </div>
-
-        <!-- Alto Contraste -->
         <div class="accessibility-option">
-            <label class="option-label" for="highContrast">Alto Contraste</label>
-            <p class="option-description">Melhora a visibilidade com contraste elevado</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="highContrast" aria-describedby="contrast-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="contrast-desc" class="sr-only">Ativa o modo de alto contraste para melhor visibilidade</div>
+            <label for="toggleContrast">Alto Contraste</label>
+            <button class="accessibility-button" id="toggleContrast" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Modo Escuro -->
         <div class="accessibility-option">
-            <label class="option-label" for="darkMode">Modo Escuro</label>
-            <p class="option-description">Reduz o cansaço visual em ambientes com pouca luz</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="darkMode" aria-describedby="dark-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="dark-desc" class="sr-only">Ativa o tema escuro para reduzir fadiga visual</div>
+            <label for="toggleDarkMode">Modo Escuro</label>
+            <button class="accessibility-button" id="toggleDarkMode" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Fonte para Dislexia -->
         <div class="accessibility-option">
-            <label class="option-label" for="dyslexiaFont">Fonte para Dislexia</label>
-            <p class="option-description">Usa fonte mais legível para pessoas com dislexia</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="dyslexiaFont" aria-describedby="dyslexia-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="dyslexia-desc" class="sr-only">Ativa fonte especial para facilitar a leitura</div>
+            <label for="toggleDyslexicFont">Fonte para Dislexia</label>
+            <button class="accessibility-button" id="toggleDyslexicFont" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Cursor Grande -->
         <div class="accessibility-option">
-            <label class="option-label" for="largeCursor">Cursor Grande</label>
-            <p class="option-description">Aumenta o tamanho do cursor do mouse</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="largeCursor" aria-describedby="cursor-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="cursor-desc" class="sr-only">Aumenta o cursor para melhor visibilidade</div>
+            <label for="toggleLargeCursor">Cursor Grande</label>
+            <button class="accessibility-button" id="toggleLargeCursor" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Guia de Leitura -->
         <div class="accessibility-option">
-            <label class="option-label" for="readingGuide">Guia de Leitura</label>
-            <p class="option-description">Linha horizontal que acompanha o cursor para facilitar a leitura</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="readingGuide" aria-describedby="guide-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="guide-desc" class="sr-only">Ativa guia visual que segue o mouse durante a leitura</div>
+            <label for="toggleReadingGuide">Guia de Leitura</label>
+            <button class="accessibility-button" id="toggleReadingGuide" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Indicador de Foco -->
         <div class="accessibility-option">
-            <label class="option-label" for="focusIndicator">Indicador de Foco Aprimorado</label>
-            <p class="option-description">Destaque visual mais claro do elemento em foco</p>
-            <label class="toggle-switch">
-                <input type="checkbox" id="focusIndicator" aria-describedby="focus-desc">
-                <span class="slider"></span>
-            </label>
-            <div id="focus-desc" class="sr-only">Melhora a visibilidade do elemento selecionado</div>
+            <label for="toggleHighlightLinks">Destacar Links</label>
+            <button class="accessibility-button" id="toggleHighlightLinks" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Ajuste para Daltonismo -->
         <div class="accessibility-option">
-            <label class="option-label">Filtro para Daltonismo</label>
-            <p class="option-description">Ajusta as cores para diferentes tipos de daltonismo</p>
-            <div class="color-selector" role="radiogroup" aria-labelledby="color-filter-label">
-                <div id="color-filter-label" class="sr-only">Selecione o tipo de filtro de cor</div>
-                <button class="color-option active" data-filter="none"
-                    style="background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff)" aria-label="Cores normais"
-                    role="radio" aria-checked="true"></button>
-                <button class="color-option" data-filter="protanopia"
-                    style="background: linear-gradient(45deg, #877800, #008785, #0000ff)"
-                    aria-label="Filtro para protanopia" role="radio" aria-checked="false"></button>
-                <button class="color-option" data-filter="deuteranopia"
-                    style="background: linear-gradient(45deg, #b8860b, #008b8b, #0000ff)"
-                    aria-label="Filtro para deuteranopia" role="radio" aria-checked="false"></button>
-                <button class="color-option" data-filter="tritanopia"
-                    style="background: linear-gradient(45deg, #ff1493, #32cd32, #800080)"
-                    aria-label="Filtro para tritanopia" role="radio" aria-checked="false"></button>
-                <button class="color-option" data-filter="achromatopsia"
-                    style="background: linear-gradient(45deg, #808080, #a0a0a0, #606060)"
-                    aria-label="Filtro para acromatopsia" role="radio" aria-checked="false"></button>
-                <button class="color-option" data-filter="blue-yellow"
-                    style="background: linear-gradient(45deg, #ffff00, #00ffff, #0000ff)"
-                    aria-label="Filtro azul-amarelo" role="radio" aria-checked="false"></button>
-            </div>
+            <label for="screenReaderToggle">Leitor de Tela (Experimental)</label>
+            <button class="accessibility-button" id="screenReaderToggle" aria-pressed="false">Ativar</button>
         </div>
-
-        <!-- Reset Configurações -->
-        <div class="accessibility-option">
-            <button class="font-btn" id="resetAll" style="width: 100%; padding: 1rem;">
-                Restaurar Configurações Padrão
+        <div id="screenReaderControls" style="display: none; text-align: center; margin-top: 10px;">
+            <button class="accessibility-button" id="readPageContent"><i class="fas fa-play"></i> Ler Página</button>
+            <button class="accessibility-button" id="pauseReading"><i class="fas fa-pause"></i> Pausar</button>
+            <button class="accessibility-button" id="stopReading"><i class="fas fa-stop"></i> Parar</button>
+        </div>
+        <div class="accessibility-option" style="margin-top: 15px;">
+            <button class="accessibility-button" id="resetSettings"
+                style="width: 100%; background-color: var(--warm-red);">
+                Redefinir Ajustes
             </button>
         </div>
     </div>
 
-    <!-- Elementos auxiliares para acessibilidade -->
-    <div class="focus-indicator" id="focusIndicator" aria-hidden="true"></div>
-    <div class="reading-guide" id="readingGuide" aria-hidden="true"></div>
+    <main>
+        <div class="page active" id="homePage" role="document" aria-labelledby="homePageTitle">
+            <div class="container home-container">
+                <header class="header home-header">
+                    <div class="astronaut-container" id="astronautContainer">
+                        <i class="fas fa-user-astronaut astronaut-icon"></i>
+                    </div>
+                    <h1 class="logo" id="homePageTitle">Nave Azul</h1>
+                    <p class="subtitle">Sua jornada de descobertas e apoio no espectro começa aqui!</p>
+                </header>
 
-    <!-- Anunciador para leitores de tela -->
-    <div id="announcer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+                <section class="welcome-section" aria-labelledby="welcomeTitle">
+                    <h2 id="welcomeTitle" class="sr-only">Boas-vindas à Nave Azul</h2>
+                    <div class="welcome-message">
+                        <p>Olá, AstroExplorador! Bem-vindo(a) a bordo da Nave Azul, seu portal intergaláctico para
+                            informações, recursos e uma comunidade acolhedora no universo do Transtorno do Espectro
+                            Autista (TEA).</p>
+                        <p>Prepare-se para decolar em uma jornada de conhecimento e suporte. Nossa missão é iluminar o
+                            caminho e celebrar cada constelação única de habilidades.</p>
+                    </div>
+                </section>
 
-    <footer class="footer" role="contentinfo">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="src/assets/img/logo_fundo_trasnparente.png" alt="Nave Azul" class="footer-logo" width="120"
-                    height="40">
-                <p class="footer-slogan">Jornadas terapêuticas para o Transtorno do Espectro Autista</p>
-            </div>
+                <section class="action-buttons" aria-label="Módulos da Nave Azul">
+                    <a href="/src/pages/page_tea.html" class="action-card"
+                        aria-label="Acessar Módulo de Exploração: Ferramentas e recursos para navegadores do espectro">
+                        <div class="action-card-icon-wrapper">
+                            <i class="icon fas fa-rocket"></i>
+                        </div>
+                        <h3>Módulo de Exploração</h3>
+                        <p>Recursos interativos, ferramentas de comunicação e atividades desenhadas para sua jornada
+                            única.</p>
+                    </a>
 
-            <div class="footer-links">
-                <h2 class="footer-heading">Links Rápidos</h2>
-                <ul class="footer-nav">
-                    <li><a href="#inicio" class="footer-link">Início</a></li>
-                    <li><a href="#sobre" class="footer-link">Sobre o Projeto</a></li>
-                    <li><a href="#niveis" class="footer-link">Níveis de Aprendizado</a></li>
-                    <li><a href="#acessibilidade" class="footer-link">Acessibilidade</a></li>
-                </ul>
-            </div>
+                    <a href="base_apoio.html" class="action-card secondary"
+                        aria-label="Acessar Base de Apoio Estelar: Orientações e suporte para a tripulação de apoio">
+                        <div class="action-card-icon-wrapper">
+                            <i class="icon fas fa-satellite-dish"></i>
+                        </div>
+                        <h3>Base de Apoio Estelar</h3>
+                        <p>Guias, estratégias e uma rede de suporte para familiares, cuidadores e toda a tripulação de
+                            apoio.</p>
+                    </a>
+                </section>
 
-            <div class="footer-contact">
-                <h2 class="footer-heading">Contato</h2>
-                <address>
-                    <p class="footer-contact-item">
-                        <svg aria-hidden="true" class="footer-icon" width="18" height="18" viewBox="0 0 24 24">
-                            <path
-                                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                        </svg>
-                        <a href="mailto:contato@naveazul.com" class="footer-link">contato@naveazul.com</a>
-                    </p>
-                </address>
+                <section class="about-section" id="aboutSectionAnchor" aria-labelledby="missionTitle">
+                    <h2 id="missionTitle">Nossa Missão Interestelar</h2>
+                    <div class="about-content">
+                        <p>A Nave Azul foi idealizada como um farol de esperança e conhecimento. Nossa missão é
+                            capacitar indivíduos no espectro autista e suas famílias, oferecendo um ambiente seguro e
+                            rico em recursos para promover o desenvolvimento, a inclusão e o bem-estar.</p>
+                        <p>Acreditamos que cada pessoa é uma estrela brilhante, e com as ferramentas certas, todos podem
+                            navegar pelos desafios e alcançar seu pleno potencial no vasto universo da vida.</p>
+                    </div>
+                </section>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p class="footer-accessibility">
-                <span class="accessibility-badge" aria-label="Aplicação 100% offline e acessível">
-                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" class="accessibility-icon">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-5l4 2.5-4 2.5zM12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8z" />
-                    </svg>
-                    Aplicação 100% offline e acessível
-                </span>
-            </p>
-                                                                <!--Redes Sociais -->
-            <div class="footer-social">
-                <a href="#" aria-label="Facebook" class="social-link">
-                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-                        <path
-                            d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
-                    </svg>
-                </a>
-                <a href="#" aria-label="Instagram" class="social-link">
-                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2.16c3.2 0 3.58 0 4.85.07 1.17.06 1.8.27 2.22.45.56.23 1.04.54 1.5 1 .46.46.77.94 1 1.5.18.42.39 1.05.45 2.22.07 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.06 1.17-.27 1.8-.45 2.22-.23.56-.54 1.04-1 1.5-.46.46-.94.77-1.5 1-.42.18-1.05.39-2.22.45-1.27.07-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.06-1.8-.27-2.22-.45-.56-.23-1.04-.54-1.5-1-.46-.46-.77-.94-1-1.5-.18-.42-.39-1.05-.45-2.22-.07-1.27-.07-1.65-.07-4.85s0-3.58.07-4.85c.06-1.17.27-1.8.45-2.22.23-.56.54-1.04 1-1.5.46-.46.94-.77 1.5-1 .42-.18 1.05-.39 2.22-.45 1.27-.07 1.65-.07 4.85-.07zm0-2.16c-3.27 0-3.68.01-4.96.07-1.29.06-2.16.28-2.93.6-.8.33-1.49.77-2.12 1.4-.63.63-1.07 1.32-1.4 2.12-.32.77-.54 1.64-.6 2.93-.06 1.28-.07 1.69-.07 4.96s.01 3.68.07 4.96c.06 1.29.28 2.16.6 2.93.33.8.77 1.49 1.4 2.12.63.63 1.32 1.07 2.12 1.4.77.32 1.64.54 2.93.6 1.28.06 1.69.07 4.96.07s3.68-.01 4.96-.07c1.29-.06 2.16-.28 2.93-.6.8-.33 1.49-.77 2.12-1.4.63-.63 1.07-1.32 1.4-2.12.32-.77.54-1.64.6-2.93.06-1.28.07-1.69.07-4.96s-.01-3.68-.07-4.96c-.06-1.29-.28-2.16-.6-2.93-.33-.8-.77-1.49-1.4-2.12-.63-.63-1.32-1.07-2.12-1.4-.77-.32-1.64-.54-2.93-.6-1.28-.06-1.69-.07-4.96-.07zm0 5.34c-3.13 0-5.66 2.53-5.66 5.66s2.53 5.66 5.66 5.66 5.66-2.53 5.66-5.66-2.53-5.66-5.66-5.66zm0 9.33c-2.03 0-3.67-1.64-3.67-3.67s1.64-3.67 3.67-3.67 3.67 1.64 3.67 3.67-1.64 3.67-3.67 3.67zm6.5-9.5c0 .73-.59 1.32-1.32 1.32s-1.32-.59-1.32-1.32.59-1.32 1.32-1.32 1.32.59 1.32 1.32z" />
-                    </svg>
-                </a>
-                <a href="#" aria-label="YouTube" class="social-link">
-                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24">
-                        <path
-                            d="M10 15l5.19-3L10 9v6zm11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z" />
-                    </svg>
-                </a>
+
+        <!--Aba Cuidador-->
+        <div class="page" id="cuidadorPage" role="document" aria-labelledby="cuidadorPageTitle">
+            <div class="container">
+                <header class="header">
+                    <h1 class="logo" id="cuidadorPageTitle">Apoio ao Cuidador</h1>
+                    <p class="subtitle">Fortalecendo quem cuida...</p>
+                </header>
+                <section class="tools-section" aria-labelledby="infoStrategyTitle">
+                    <h3 id="infoStrategyTitle" class="section-title"><i class="fas fa-info-circle"></i> Informação e
+                        Estratégias</h3>
+                    <p>Cuidar é um ato de amor...</p>
+                </section>
+                <section class="resource-grid" aria-labelledby="guidesArticlesTitle">
+                    <div class="resource-card">
+                        <h4 id="guidesArticlesTitle"><i class="fas fa-book-open"></i> Guias Práticos e Artigos</h4>
+                        <ul>
+                            <li><a href="#" aria-label="Ler mais sobre Estratégias de Comunicação Efetiva">Estratégias
+                                    de Comunicação...</a></li>
+                        </ul>
+                    </div>
+                    <div class="resource-card">
+                        <h4 id="supportResourcesTitle"><i class="fas fa-users-cog"></i> Recursos e Suporte</h4>
+                        <p>Conecte-se com outros cuidadores...</p>
+                        <a href="#" class="btn-resource"><i class="fas fa-comments"></i> Grupos de Apoio Online</a>
+                        <a href="#" class="btn-resource" style="margin-top:10px;"><i class="fas fa-user-md"></i>
+                            Encontrar Profissionais</a>
+                    </div>
+                </section>
+                <section class="tools-section" aria-labelledby="rightsLegislationTitle">
+                    <h3 id="rightsLegislationTitle" class="section-title"><i class="fas fa-gavel"></i> Direitos e
+                        Legislação</h3>
+                    <p>Conheça os direitos da pessoa com TEA...</p>
+                    <a href="docs/guia_direitos_tea_ficticio.pdf" target="_blank" class="btn-resource"
+                        style="background-color: var(--gentle-green);">
+                        <i class="fas fa-file-pdf"></i> Baixar Guia de Direitos (PDF Fictício)
+                    </a>
+                    <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.7;">(Este é um link para um arquivo PDF
+                        fictício...)</p>
+                </section>
             </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-shape-divider"> <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,900.5,50.84,990.24,70.47c60.55,13.07,120.53,25.32,180.44,30.34,60.27,5.07,120.26-3.05,180.18-10.06L1500,120H0V57.28Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+
+        <div class="footer-container container">
+            <div class="footer-column footer-about">
+                <div class="footer-logo">
+                    <a href="#" data-page="homePage">
+                        <i class="fas fa-rocket nav-logo-icon"></i>
+                        <span>Nave Azul</span>
+                    </a>
+                </div>
+                <p>Um espaço de acolhimento, informação e recursos para a comunidade do Transtorno do Espectro Autista.
+                    Navegando juntos por um mundo mais inclusivo.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#" data-page="homePage" class="footer-link"><i class="fas fa-angle-right"></i>
+                            Início</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-angle-right"></i> Universo
+                            TEA</a></li>
+                    <li><a href="#" class="footer-link"><i class="fas fa-angle-right"></i>
+                            Apoio ao Cuidador</a></li>
+                    <li><a href="#aboutSectionAnchor" class="footer-link nav-link-to-section"><i
+                                class="fas fa-angle-right"></i> Sobre</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <ul>
+                    <li><i class="fas fa-envelope footer-contact-icon"></i> <a href="mailto:contato@naveazul.org.br"
+                            class="footer-link">contato@naveazul.org.br</a></li>
+                    <li><i class="fas fa-phone footer-contact-icon"></i> (XX) XXXXX-XXXX (Fictício)</li>
+                    <li><i class="fas fa-map-marker-alt footer-contact-icon"></i> Localização Fictícia, Brasil</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Siga-nos</h4>
+                <p>Conecte-se conosco nas redes sociais:</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook do Portal Nave Azul" target="_blank" class="social-icon-link"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram do Portal Nave Azul" target="_blank" class="social-icon-link"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter do Portal Nave Azul" target="_blank" class="social-icon-link"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn do Portal Nave Azul" target="_blank" class="social-icon-link"><i
+                            class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Portal Nave Azul. Todos os direitos reservados.</p>
+            <p>Desenvolvido com <i class="fas fa-heart footer-heart-icon"></i> e foco na Acessibilidade e Inclusão.</p>
         </div>
     </footer>
 

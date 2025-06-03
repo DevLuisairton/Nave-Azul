@@ -1,0 +1,186 @@
+/* src/assets/css/global/main_layout.css */
+.page {
+    display: none; /* Controlado por JS para mostrar a página ativa */
+    width: 100%;
+    animation: moduleSlideUp 0.6s var(--animation-medium) backwards; /* Animação de entrada da página */
+}
+
+.page.active {
+    display: block;
+}
+
+.page-container { /* Container específico dentro de uma .page, se necessário mais controle de padding */
+    padding-top: 40px; /* Espaçamento superior para o conteúdo da página */
+    padding-bottom: 60px; /* Espaçamento inferior */
+}
+
+/* Header para Páginas Internas (Ex: Módulo de Exploração, Apoio ao Cuidador, Sobre) */
+.page-internal-header {
+    text-align: center;
+    margin-bottom: 40px; /* Espaço antes do primeiro módulo/seção */
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.2);
+    animation: moduleSlideUp 0.5s var(--animation-medium) backwards;
+    animation-delay: 0.1s; /* Pequeno delay para o header aparecer após a página */
+}
+
+.page-title {
+    font-size: 2.4rem; /* Ajustado para páginas internas */
+    font-weight: 700;
+    color: var(--tech-cyan, rgb(0, 190, 255));
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 10px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza título e ícone */
+    gap: 12px; /* Espaço entre ícone e texto */
+}
+.page-title i { /* Ícone no título da página */
+    font-size: 0.9em; /* Relativo ao tamanho do título */
+    opacity: 0.9;
+}
+
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: rgba(var(--light-text-rgb, 230, 240, 255), 0.8);
+    font-weight: 300;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Botão Voltar ao Início (usado nas páginas internas) */
+.nav-back {
+    display: inline-flex; /* Para alinhar ícone e texto */
+    align-items: center;
+    gap: 8px;
+    background: rgba(var(--ship-silver-rgb, 192, 197, 206), 0.1);
+    color: var(--light-text, rgb(230, 240, 255));
+    border: 1px solid rgba(var(--ship-silver-rgb, 192, 197, 206), 0.2);
+    padding: 10px 18px;
+    border-radius: var(--border-radius-large, 16px);
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--animation-fast);
+    margin-bottom: 30px;
+}
+.nav-back:hover {
+    background: rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.2);
+    border-color: var(--tech-cyan, rgb(0, 190, 255));
+    color: var(--tech-cyan, rgb(0, 190, 255));
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.15);
+}
+.nav-back i {
+    transition: transform 0.3s ease;
+}
+.nav-back:hover i {
+    transform: translateX(-3px);
+}
+
+/* Estilos genéricos para seções e seus títulos (se usados consistentemente) */
+.section-title { /* Usado como H3 dentro dos .exploration-module por exemplo */
+    color: var(--tech-cyan, rgb(0, 190, 255));
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.25);
+    text-shadow: 0 0 10px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.4);
+    display: flex;
+    align-items: center;
+}
+.section-title i {
+    margin-right: 12px;
+    font-size: 1.05em;
+    text-shadow: 0 0 8px rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.5);
+}
+
+.section-description {
+    font-size: 1rem;
+    color: rgba(var(--light-text-rgb, 230, 240, 255), 0.8);
+    margin-bottom: 30px;
+    line-height: 1.75;
+}
+
+/* Dark Mode e High Contrast para Layouts Gerais */
+body.dark-mode .page-internal-header {
+    border-bottom-color: rgba(var(--tech-cyan-rgb, 0, 190, 255), 0.2); /* Mantém o mesmo, já é escuro */
+}
+body.dark-mode .page-title {
+    /* color: var(--tech-cyan); Já é assim */
+}
+body.dark-mode .page-subtitle {
+    /* color: rgba(var(--light-text-rgb), 0.8); Já é assim */
+}
+body.dark-mode .nav-back {
+    background: rgba(var(--ship-silver-rgb), 0.15);
+    border-color: rgba(var(--ship-silver-rgb), 0.25);
+    color: var(--light-text);
+}
+body.dark-mode .nav-back:hover {
+    background: rgba(var(--tech-cyan-rgb), 0.25);
+    border-color: var(--tech-cyan);
+    color: var(--tech-cyan);
+}
+
+body.high-contrast .page-internal-header {
+    border-bottom: 2px solid var(--hc-text, #000000) !important;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+body.high-contrast .page-title {
+    color: var(--hc-text, #000000) !important;
+    font-size: 2.2rem;
+    text-shadow: none !important;
+}
+body.high-contrast .page-title i {
+    color: var(--hc-text, #000000) !important;
+    text-shadow: none !important;
+}
+body.high-contrast .page-subtitle {
+    color: var(--hc-text, #000000) !important;
+    opacity: 1;
+}
+body.high-contrast .nav-back {
+    background: var(--hc-background, #FFFFFF) !important;
+    color: var(--hc-text, #000000) !important;
+    border: 2px solid var(--hc-text, #000000) !important;
+    box-shadow: none !important;
+}
+body.high-contrast .nav-back:hover {
+    background: var(--hc-highlight-bg, #FFFF00) !important;
+}
+body.high-contrast .section-title {
+    color: var(--hc-text, #000000) !important;
+    border-bottom-color: var(--hc-text, #000000) !important;
+    text-shadow: none !important;
+}
+body.high-contrast .section-title i {
+    color: var(--hc-text, #000000) !important;
+    text-shadow: none !important;
+}
+body.high-contrast .section-description {
+    color: var(--hc-text, #000000) !important;
+}
+
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    .page-container {
+        padding-top: 25px;
+        padding-bottom: 40px;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+}

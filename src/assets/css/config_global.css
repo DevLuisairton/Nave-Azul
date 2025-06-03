@@ -1,19 +1,140 @@
+/* src/assets/css/global/config_global.css */
+:root {
+    /* Paleta Nave Azul */
+    --space-dark-blue-rgb: 12, 22, 39;
+    --space-mid-blue-rgb: 25, 42, 76;
+    --tech-cyan-rgb: 0, 190, 255;
+    --star-yellow-rgb: 255, 230, 150;
+    --nebula-purple-rgb: 120, 80, 190;
+    --ship-silver-rgb: 192, 197, 206;
+    --light-text-rgb: 230, 240, 255;
+    --white-rgb: 255, 255, 255;
+    --black-rgb: 10, 10, 20;
+
+    --space-dark-blue: rgb(var(--space-dark-blue-rgb));
+    --space-mid-blue: rgb(var(--space-mid-blue-rgb));
+    --tech-cyan: rgb(var(--tech-cyan-rgb));
+    --star-yellow: rgb(var(--star-yellow-rgb));
+    --nebula-purple: rgb(var(--nebula-purple-rgb));
+    --ship-silver: rgb(var(--ship-silver-rgb));
+    --light-text: rgb(var(--light-text-rgb));
+    --pure-white: rgb(var(--white-rgb)); /* Renomeado para evitar conflito com a variável --white das classes de acessibilidade */
+    --pure-black: rgb(var(--black-rgb)); /* Renomeado para evitar conflito */
+
+    /* Cores de Feedback (mantidas da paleta anterior, ajuste se necessário) */
+    --success-rgb: 72, 187, 120;
+    --warning-rgb: 237, 137, 54;
+    --error-rgb: 245, 101, 101;
+    --success: rgb(var(--success-rgb));
+    --warning: rgb(var(--warning-rgb));
+    --error: rgb(var(--error-rgb));
+
+    /* Fontes */
+    --font-primary: 'Inter', sans-serif;
+    --font-dyslexic: 'OpenDyslexic', sans-serif;
+
+    /* Outras Variáveis */
+    --border-radius: 10px; /* Ajustado para um visual ligeiramente mais nítido/moderno */
+    --border-radius-large: 16px;
+
+    --shadow-sm: 0 2px 4px rgba(var(--black-rgb), 0.25), 0 1px 2px rgba(var(--black-rgb), 0.2);
+    --shadow-md: 0 5px 12px rgba(var(--black-rgb), 0.3), 0 3px 8px rgba(var(--black-rgb), 0.25);
+    --shadow-lg: 0 12px 25px rgba(var(--black-rgb), 0.35), 0 5px 15px rgba(var(--black-rgb), 0.28);
+
+    --animation-fast: 0.2s ease-out;
+    --animation-medium: 0.4s ease-out;
+    --animation-slow: 0.7s ease-out;
+
+    /* Variáveis de acessibilidade (serão usadas em accessibility.css para sobrescrever) */
+    --hc-text: #000000;
+    --hc-background: #FFFFFF;
+    --hc-link: #0000FF;
+    --hc-link-hover: #FF00FF;
+    --hc-highlight-bg: #FFFF00; /* Amarelo para destaque */
+
+    --dm-text: rgb(var(--light-text-rgb));
+    --dm-background: rgb(var(--space-dark-blue-rgb));
+    --dm-surface1: rgb(var(--space-mid-blue-rgb)); /* Superfície um pouco mais clara que o fundo */
+    --dm-surface2: rgba(var(--ship-silver-rgb), 0.05); /* Superfície ainda mais sutil */
+    --dm-border: rgba(var(--ship-silver-rgb), 0.15);
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #F2F2F2 0%, #E8E8E8 100%);
-  color: #333333;
-  min-height: 100vh;
-  line-height: 1.6;
-  overflow-x: hidden;
-  position: relative;
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    color: var(--light-text);
+    background-color: var(--space-dark-blue);
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(var(--tech-cyan-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--nebula-purple-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at center, var(--space-mid-blue) 0%, var(--space-dark-blue) 70%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: font-size var(--animation-medium), background var(--animation-medium), color var(--animation-medium);
+    padding-top: 70px; /* Ajustar conforme altura final da navbar. Ex: 78px */
+    display: flex;
+    flex-direction: column;
+}
+
+body.no-scroll-mobile-menu { /* Adicionado para quando o menu mobile estiver aberto */
+    overflow: hidden;
+}
+
+main {
+    flex-grow: 1; /* Garante que o footer fique no final */
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px; /* Container principal para conteúdo */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Estilos de Foco Visíveis Globais */
+:focus-visible {
+    outline: 3px solid var(--tech-cyan);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(var(--tech-cyan-rgb), 0.3);
+    border-radius: 4px; /* Para o outline acompanhar bordas arredondadas */
+}
+
+/* Classe para esconder visualmente, mas manter acessível para leitores de tela */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Responsividade básica para html font-size */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    body {
+        padding-top: 65px; /* Ajustar conforme altura da navbar mobile */
+    }
+    .container {
+        padding: 0 15px;
+    }
 }

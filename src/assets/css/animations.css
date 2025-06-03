@@ -1,0 +1,109 @@
+/* src/assets/css/global/animations.css */
+
+/* Animação de Partículas/Estrelas */
+@keyframes spaceDrift {
+    0% {
+        transform: translateY(100vh) translateX(calc(var(--random-x) * 1px)) scale(var(--random-scale));
+        opacity: 0;
+    }
+    10%, 20% {
+        opacity: var(--random-opacity);
+    }
+    80%, 90% {
+        opacity: var(--random-opacity);
+    }
+    100% {
+        transform: translateY(-100px) translateX(calc(var(--random-x) * 1px + 50px)) scale(var(--random-scale));
+        opacity: 0;
+    }
+}
+
+/* Animação para o Astronauta na Home */
+@keyframes floatAstronaut {
+    0%, 100% {
+        transform: translateY(0px) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-18px) rotate(3.5deg); /* Flutuação mais pronunciada */
+    }
+}
+
+/* Animação para ícones dos action-cards na Home */
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+/* Animação de gradiente para texto */
+@keyframes animatedGradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animação de brilho sutil para texto */
+@keyframes subtleTextShine {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.25); }
+}
+/* Para dark mode, se precisar de um brilho diferente */
+@keyframes darkSubtleGlowPulse {
+    from { filter: drop-shadow(0 0 8px rgba(var(--star-yellow-rgb), 0.4)) brightness(1.1); }
+    to { filter: drop-shadow(0 0 20px rgba(var(--tech-cyan-rgb), 0.6)) brightness(1.2); }
+}
+
+
+/* Animação de Respiração (para o círculo) */
+@keyframes breatheOuter {
+    0%, 100% { transform: scale(1); border-color: var(--tech-cyan); }
+    25% { transform: scale(1.18); border-color: var(--star-yellow); } /* Inspirar */
+    50% { transform: scale(1.18); border-color: var(--star-yellow); } /* Segurar */
+    75% { transform: scale(0.88); border-color: var(--nebula-purple); } /* Expirar */
+}
+
+@keyframes pulseInner {
+    0%, 100% { transform: scale(0); opacity: 0.15; }
+    25% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1); opacity: 0.3; }
+    75% { transform: scale(0.6); opacity: 0.15; }
+}
+
+/* Animação para o ícone de coração no footer */
+@keyframes pulseHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Animação de entrada para seções */
+@keyframes moduleSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fallback para prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important; /* Anima uma vez, muito rápido */
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .particle { /* Ocultar partículas */
+        display: none !important;
+    }
+
+    .breathing-circle.breathing,
+    .breathing-circle.breathing .breathing-circle-inner,
+    .home-header .logo, /* Remove animações do logo da home */
+    .astronaut-icon,
+    .footer-heart-icon,
+    .action-card .icon { /* Remove animação de pulso do ícone */
+        animation: none !important;
+    }
+
+    .exploration-module { /* Remove animação de entrada */
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
