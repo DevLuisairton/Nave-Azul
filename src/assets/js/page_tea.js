@@ -1,335 +1,300 @@
-// src/assets/js/pages/page_tea.js
-window.initTeaPage = function() { // <<<<<< MUDANÇA AQUI
-    console.log("Nave Azul: Inicializando interações do Módulo de Exploração...");
+document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. JOGO DE RECONHECIMENTO EMOCIONAL ---
-    // ... (todo o código do jogo de emoções) ...
-    const emotionImageEl = document.getElementById('emotionImage');
-    const emotionGameInstructionEl = document.getElementById('emotionGameInstruction');
-    const emotionOptionBtns = document.querySelectorAll('#emotionGames .emotion-option-btn');
-    const emotionGameFeedbackEl = document.getElementById('emotionGameFeedback');
-    const emotionGameScoreEl = document.getElementById('emotionGameScore');
-
-    const emotionsData = [
-        { img: 'https://via.placeholder.com/200x200/0C1627/FFD700?text=Feliz+:D', correctEmotion: 'alegria', alt: 'Rosto sorrindo representando alegria' },
-        { img: 'https://via.placeholder.com/200x200/0C1627/ADD8E6?text=Triste+:(', correctEmotion: 'tristeza', alt: 'Rosto triste representando tristeza' },
-        { img: 'https://via.placeholder.com/200x200/0C1627/FF6347?text=Raiva+>:O', correctEmotion: 'raiva', alt: 'Rosto zangado representando raiva' },
-        { img: 'https://via.placeholder.com/200x200/0C1627/90EE90?text=Surpresa+O.O', correctEmotion: 'surpresa', alt: 'Rosto surpreso representando surpresa' }
-    ];
-    let currentEmotionIndex = 0;
-    let emotionGameScore = 0;
-
-    function loadEmotionChallenge() {
-        if (!emotionImageEl || !emotionGameInstructionEl || !emotionGameFeedbackEl) {
-            return;
-        }
-        const emotionOptionsContainer = document.querySelector('#emotionGames .emotion-options');
-
-        if (currentEmotionIndex >= emotionsData.length) {
-            emotionGameInstructionEl.textContent = "Fim do desafio de emoções! Ótima exploração!";
-            emotionImageEl.style.display = 'none';
-            if (emotionOptionsContainer) emotionOptionsContainer.style.display = 'none';
-            emotionGameFeedbackEl.textContent = `Pontuação final: ${emotionGameScore} de ${emotionsData.length * 10} estrelas!`;
-            if(window.speakFromReader) window.speakFromReader(`Fim do desafio de emoções! Pontuação final: ${emotionGameScore} de ${emotionsData.length * 10} estrelas!`);
-            return;
-        }
-        
-        if (emotionOptionsContainer) emotionOptionsContainer.style.display = 'flex';
-        const currentChallenge = emotionsData[currentEmotionIndex];
-        emotionImageEl.src = currentChallenge.img;
-        emotionImageEl.alt = currentChallenge.alt;
-        emotionImageEl.style.display = 'block';
-        emotionGameInstructionEl.textContent = "Qual emoção este avatar está sentindo?";
-        emotionGameFeedbackEl.textContent = "Selecione uma emoção!";
-        emotionGameFeedbackEl.style.color = 'inherit';
-    }
-
-    if (emotionOptionBtns.length > 0) {
-        emotionOptionBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                if (currentEmotionIndex >= emotionsData.length || !emotionGameFeedbackEl || !emotionGameScoreEl) return;
-
-                const selectedEmotion = this.dataset.emotion;
-                const correctEmotion = emotionsData[currentEmotionIndex].correctEmotion;
-                let feedbackText = "";
-
-                if (selectedEmotion === correctEmotion) {
-                    emotionGameScore += 10;
-                    feedbackText = "Correto! Você identificou a emoção. Ganhou 10 estrelas!";
-                    emotionGameFeedbackEl.style.color = 'var(--success, #48BB78)';
-                } else {
-                    feedbackText = `Hmm, essa não foi a emoção. A emoção correta era ${correctEmotion}. Tente a próxima!`;
-                    emotionGameFeedbackEl.style.color = 'var(--error, #F56565)';
-                }
-                emotionGameFeedbackEl.textContent = feedbackText;
-                emotionGameScoreEl.textContent = emotionGameScore;
-                if(window.speakFromReader) window.speakFromReader(feedbackText);
-
-                currentEmotionIndex++;
-                emotionOptionBtns.forEach(b => b.disabled = true);
-                setTimeout(() => {
-                    loadEmotionChallenge();
-                    emotionOptionBtns.forEach(b => b.disabled = false);
-                }, 2800);
-            });
-        });
-        // A inicialização de loadEmotionChallenge() é feita quando a função initTeaPage é chamada
-    } else if (document.getElementById('emotionGames')) {
-        console.warn("Nave Azul: Botões de opção do jogo de emoção não encontrados.");
-    }
-
-    // --- 2. ROTINAS INTERATIVAS (CHECKLIST VISUAL) ---
-    // ... (código das rotinas como na resposta anterior) ...
-    const routineTaskListEl = document.getElementById('routineTaskList');
+    // --- Planejador de Missões Diárias ---
     const addRoutineTaskBtn = document.getElementById('addRoutineTaskBtn');
+    const routineTaskList = document.getElementById('routineTaskList');
     const currentDateRoutineEl = document.getElementById('currentDateRoutine');
-    const ROUTINE_STORAGE_KEY = 'naveAzulUserRoutines';
-    let userRoutines = [];
+    const routineAreaPlaceholderText = document.querySelector('#routineArea .routine-placeholder-text');
 
-    function saveRoutines() {
-        try { localStorage.setItem(ROUTINE_STORAGE_KEY, JSON.stringify(userRoutines)); }
-        catch (e) { console.error("Nave Azul: Erro ao salvar rotinas.", e); }
+    // Define a data atual no cabeçalho da rotina
+    if (currentDateRoutineEl) {
+        const today = new Date();
+        // Intl.DateTimeFormat para formatação mais robusta e localizada
+        const formatter = new Intl.DateTimeFormat('pt-BR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        currentDateRoutineEl.textContent = formatter.format(today);
     }
 
-    function loadRoutines() {
-        if (!routineTaskListEl) return;
-        try {
-            const storedRoutines = localStorage.getItem(ROUTINE_STORAGE_KEY);
-            if (storedRoutines) userRoutines = JSON.parse(storedRoutines);
-            else {
-                userRoutines = [
-                    { id: Date.now() + 1, text: "Acordar e espreguiçar como um astronauta", icon: "fa-bed-front", completed: false },
-                    { id: Date.now() + 2, text: "Tomar Café da Manhã Cósmico", icon: "fa-mug-saucer", completed: false },
-                    { id: Date.now() + 3, text: "Escovar os dentes (preparar para gravidade zero!)", icon: "fa-tooth", completed: false }
-                ];
+    function updateRoutinePlaceholderVisibility() {
+        if (routineAreaPlaceholderText) {
+            const tasksExist = routineTaskList.querySelector('.routine-task-item') !== null;
+            routineAreaPlaceholderText.style.display = tasksExist ? 'none' : 'block';
+        }
+    }
+
+    if (addRoutineTaskBtn && routineTaskList) {
+        addRoutineTaskBtn.addEventListener('click', () => {
+            const taskName = prompt("Digite o nome da nova tarefa cósmica:");
+            if (taskName && taskName.trim() !== "") {
+                addNewRoutineTask(taskName.trim());
+                updateRoutinePlaceholderVisibility();
             }
-        } catch (e) {
-            console.error("Nave Azul: Erro ao carregar rotinas.", e); userRoutines = [];
-        }
-        renderRoutines();
-    }
-
-    function renderRoutines() {
-        if (!routineTaskListEl) return;
-        routineTaskListEl.innerHTML = '';
-        if (userRoutines.length === 0) {
-            routineTaskListEl.innerHTML = '<li class="routine-empty-state">Nenhuma missão para hoje. Adicione uma! <i class="fas fa-meteor"></i></li>';
-            return;
-        }
-        userRoutines.forEach(task => {
-            const li = document.createElement('li');
-            li.classList.add('routine-task-item');
-            if (task.completed) li.classList.add('completed');
-            li.dataset.taskId = task.id;
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox'; checkbox.id = `task-${task.id}`; checkbox.checked = task.completed;
-            checkbox.setAttribute('aria-labelledby', `label-task-${task.id}`);
-            checkbox.addEventListener('change', () => toggleRoutineTask(task.id));
-            const label = document.createElement('label');
-            label.htmlFor = `task-${task.id}`; label.id = `label-task-${task.id}`;
-            const iconEl = document.createElement('i');
-            iconEl.className = `fas ${task.icon || 'fa-space-shuttle'}`;
-            label.appendChild(iconEl); label.appendChild(document.createTextNode(` ${task.text}`));
-            const rewardVisual = document.createElement('span');
-            rewardVisual.className = 'task-reward-visual';
-            if (task.completed) rewardVisual.innerHTML = '<i class="fas fa-star"></i>';
-            li.appendChild(checkbox); li.appendChild(label); li.appendChild(rewardVisual);
-            routineTaskListEl.appendChild(li);
         });
     }
 
-    function addRoutineTaskFromPrompt() {
-        const newTaskText = prompt("Descreva sua nova tarefa espacial:", "Explorar novo quadrante");
-        if (newTaskText && newTaskText.trim() !== "") {
-            const icons = ["fa-rocket", "fa-user-astronaut", "fa-book", "fa-pencil-alt", "fa-seedling", "fa-lightbulb", "fa-atom", "fa-meteor"];
-            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-            userRoutines.push({ id: Date.now(), text: newTaskText.trim(), icon: randomIcon, completed: false });
-            saveRoutines(); renderRoutines();
-            if(window.speakFromReader) window.speakFromReader(`Tarefa "${newTaskText.trim()}" adicionada.`);
+    function addNewRoutineTask(name, isCompleted = false) {
+        const taskId = `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`; // ID mais robusto
+
+        const listItem = document.createElement('li');
+        listItem.classList.add('routine-task-item');
+        if (isCompleted) {
+            listItem.classList.add('completed');
+        }
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = taskId;
+        checkbox.checked = isCompleted;
+        checkbox.addEventListener('change', handleTaskCompletion);
+
+        const label = document.createElement('label');
+        label.htmlFor = taskId;
+        // Ícone padrão para novas tarefas. Pode ser alterado ou tornado selecionável no futuro.
+        label.innerHTML = `<i class="fas fa-space-shuttle" aria-hidden="true"></i> ${escapeHtml(name)}`;
+
+        const rewardVisual = document.createElement('span');
+        rewardVisual.classList.add('task-reward-visual');
+        rewardVisual.setAttribute('aria-label', 'Recompensa: Estrela');
+        if (isCompleted) {
+            rewardVisual.innerHTML = '<i class="fas fa-star" aria-hidden="true"></i>';
+        }
+
+        listItem.appendChild(checkbox);
+        listItem.appendChild(label);
+        listItem.appendChild(rewardVisual);
+
+        routineTaskList.appendChild(listItem);
+    }
+
+    function handleTaskCompletion(event) {
+        const checkbox = event.target;
+        const taskItem = checkbox.closest('.routine-task-item');
+        if (!taskItem) return;
+
+        if (checkbox.checked) {
+            taskItem.classList.add('completed');
+            taskItem.querySelector('.task-reward-visual').innerHTML = '<i class="fas fa-star" aria-hidden="true"></i>';
+        } else {
+            taskItem.classList.remove('completed');
+            taskItem.querySelector('.task-reward-visual').innerHTML = '';
         }
     }
-
-    function toggleRoutineTask(taskId) {
-        const task = userRoutines.find(t => t.id === Number(taskId));
-        if (task) {
-            task.completed = !task.completed;
-            saveRoutines(); renderRoutines();
-            if(window.speakFromReader) window.speakFromReader(`Tarefa "${task.text}" marcada como ${task.completed ? 'concluída' : 'pendente'}. ${task.completed ? 'Excelente, Comandante!' : ''}`);
-            if (task.completed) playSimpleSoundForRoutine('../assets/sounds/reward_ping.mp3'); // Ajustado caminho
-        }
-    }
-    let simpleAudioCtxForRoutine;
-    function playSimpleSoundForRoutine(src) { // Renomeado para evitar conflito com outro playSimpleSound
-        try {
-            if (!simpleAudioCtxForRoutine) simpleAudioCtxForRoutine = new (window.AudioContext || window.webkitAudioContext)();
-            const sound = new Audio(src); sound.volume = 0.2;
-            sound.play().catch(e => console.warn("Nave Azul: Não foi possível tocar som de recompensa.", src, e));
-        } catch (e) { console.warn("Nave Azul: API de Áudio não suportada ou erro.", e); }
+    
+    // Função para escapar HTML e prevenir XSS simples ao adicionar tarefas
+    function escapeHtml(unsafe) {
+        return unsafe
+             .replace(/&/g, "&amp;")
+             .replace(/</g, "&lt;")
+             .replace(/>/g, "&gt;")
+             .replace(/"/g, "&quot;")
+             .replace(/'/g, "&#039;");
     }
 
-    if (addRoutineTaskBtn) addRoutineTaskBtn.addEventListener('click', addRoutineTaskFromPrompt);
-    if (currentDateRoutineEl) {
-        try { currentDateRoutineEl.textContent = new Date().toLocaleDateString('pt-BR', {day: 'numeric', month: 'long' }); }
-        catch(e) { console.error("Erro ao formatar data: ", e); currentDateRoutineEl.textContent = "Hoje";}
+    // Adicionar event listeners para tarefas já existentes no HTML (se não forem 'disabled')
+    // e atualizar visualização do placeholder.
+    if (routineTaskList) {
+        routineTaskList.querySelectorAll('.routine-task-item input[type="checkbox"]:not([disabled])').forEach(checkbox => {
+            checkbox.addEventListener('change', handleTaskCompletion);
+            // Garante que o estado visual inicial esteja correto para tarefas pré-marcadas
+            if (checkbox.checked && !checkbox.closest('.routine-task-item').classList.contains('completed')) {
+                handleTaskCompletion({ target: checkbox }); // Simula o evento para atualizar
+            }
+        });
+        updateRoutinePlaceholderVisibility(); // Checa ao carregar a página
     }
 
 
-    // --- 3. ZONA DO SILÊNCIO (Respiração e Áudio) ---
-    // ... (código da respiração como na resposta anterior) ...
-    const breathingCircleEl = document.getElementById('breathingCircle');
-    const startStopBreathingBtnEl = document.getElementById('startStopBreathingBtn');
-    const breathingGuideTextEl = document.getElementById('breathingGuideText');
-    const breathingInstructionTextEl = document.getElementById('breathingInstructionText');
-    let isBreathingActive = false; let breathCycleTimeoutId;
-    const breathCycleDefinition = [
-        { phase: "Inspire", duration: 4000, instruction: "Puxe o ar profundamente...", cssClass: 'inhaling' },
-        { phase: "Segure", duration: 4500, instruction: "Mantenha o ar, sinta a calma...", cssClass: 'holding' },
-        { phase: "Expire", duration: 6500, instruction: "Solte o ar lentamente...", cssClass: 'exhaling' },
-        { phase: "Pause", duration: 2500, instruction: "Relaxe e prepare-se...", cssClass: 'paused-breath' }
+    // --- Câmara de Serenidade Nebular - Ciclo de Respiração ---
+    const breathingCircle = document.getElementById('breathingCircle');
+    const breathingGuideTextEl = document.getElementById('breathingGuideText'); // Elemento para "Inspirar", "Segurar", "Expirar"
+    const breathingInstructionTextEl = document.getElementById('breathingInstructionText'); // Elemento para a instrução detalhada
+    const startStopBreathingBtn = document.getElementById('startStopBreathingBtn');
+
+    let breathingInterval;
+    let isBreathingActive = false; // Renomeado para clareza
+    const breathCycleConfig = [
+        // Duração em milissegundos
+        { stateName: 'Inspirar', duration: 4000, instruction: 'Puxe o ar lentamente pelo nariz...', class: 'inhaling' },
+        { stateName: 'Segurar', duration: 4000, instruction: 'Mantenha o ar nos pulmões.', class: 'holding' },
+        { stateName: 'Expirar', duration: 6000, instruction: 'Solte o ar suavemente pela boca.', class: 'exhaling' },
+        { stateName: 'Pausar', duration: 2000, instruction: 'Relaxe antes do próximo ciclo.', class: 'paused-breath' } // Pausa curta entre ciclos
     ];
-    let currentBreathPhaseIndex = 0;
+    let currentBreathStateIndex = 0;
 
-    function updateBreathingVisualsAndText() {
-        if (!breathingCircleEl || !breathingGuideTextEl || !breathingInstructionTextEl || !startStopBreathingBtnEl) return;
-        if (!isBreathingActive) {
-            breathingCircleEl.className = 'breathing-circle';
-            breathingGuideTextEl.textContent = "Iniciar Ciclo";
-            breathingInstructionTextEl.textContent = "Sincronize com o universo";
-            startStopBreathingBtnEl.innerHTML = '<i class="fas fa-play"></i> Iniciar';
-            startStopBreathingBtnEl.setAttribute('aria-label', 'Iniciar exercício de respiração');
-            breathingCircleEl.setAttribute('aria-label', 'Círculo de respiração. Toque para iniciar.');
-            return;
+    function executeBreathCycle() {
+        if (!isBreathingActive) return;
+
+        const currentState = breathCycleConfig[currentBreathStateIndex];
+
+        if (breathingGuideTextEl) breathingGuideTextEl.textContent = currentState.stateName;
+        if (breathingInstructionTextEl) breathingInstructionTextEl.textContent = currentState.instruction;
+        
+        if (breathingCircle) {
+            breathingCircle.className = 'breathing-circle'; // Reset classes anteriores
+            breathingCircle.classList.add(currentState.class);
         }
-        const currentPhase = breathCycleDefinition[currentBreathPhaseIndex];
-        breathingGuideTextEl.textContent = currentPhase.phase;
-        breathingInstructionTextEl.textContent = currentPhase.instruction;
-        breathingCircleEl.className = 'breathing-circle breathing';
-        breathingCircleEl.classList.add(currentPhase.cssClass);
-        startStopBreathingBtnEl.innerHTML = '<i class="fas fa-pause"></i> Pausar';
-        startStopBreathingBtnEl.setAttribute('aria-label', 'Pausar exercício de respiração');
-        breathingCircleEl.setAttribute('aria-label', `Fase: ${currentPhase.phase}. Toque para pausar.`);
-        if(window.speakFromReader) window.speakFromReader(`${currentPhase.phase}. ${currentPhase.instruction}`);
-        clearTimeout(breathCycleTimeoutId);
-        breathCycleTimeoutId = setTimeout(() => {
-            if(breathingCircleEl) breathingCircleEl.classList.remove(currentPhase.cssClass);
-            currentBreathPhaseIndex = (currentBreathPhaseIndex + 1) % breathCycleDefinition.length;
-            if (isBreathingActive) updateBreathingVisualsAndText();
-        }, currentPhase.duration);
-    }
-    function toggleBreathingCycle() {
-        isBreathingActive = !isBreathingActive; clearTimeout(breathCycleTimeoutId);
-        if (isBreathingActive) currentBreathPhaseIndex = 0;
-        updateBreathingVisualsAndText();
-        if (!isBreathingActive && window.speakFromReader) window.speakFromReader("Exercício de respiração pausado.");
-    }
-    if (breathingCircleEl && startStopBreathingBtnEl) {
-        breathingCircleEl.addEventListener('click', toggleBreathingCycle);
-        startStopBreathingBtnEl.addEventListener('click', toggleBreathingCycle);
-        updateBreathingVisualsAndText(); // Estado inicial do botão
+
+        breathingInterval = setTimeout(() => {
+            currentBreathStateIndex = (currentBreathStateIndex + 1) % breathCycleConfig.length;
+            if (isBreathingActive) {
+                executeBreathCycle();
+            }
+        }, currentState.duration);
     }
 
-    // ... (código dos Sons Calmantes como na resposta anterior, ajustando caminhos de som) ...
-    const audioButtons = document.querySelectorAll('#quietZone .audio-button');
+    function startBreathingCycle() {
+        isBreathingActive = true;
+        if(startStopBreathingBtn) {
+            startStopBreathingBtn.innerHTML = '<i class="fas fa-pause" aria-hidden="true"></i> Pausar';
+            startStopBreathingBtn.setAttribute('aria-label', 'Pausar ciclo de respiração');
+        }
+        if (breathingCircle) breathingCircle.classList.remove('paused-breath-explicit'); // Remove pausa explícita
+        currentBreathStateIndex = 0; // Sempre começa da inspiração
+        executeBreathCycle();
+    }
+
+    function stopBreathingCycle(explicitPause = true) {
+        isBreathingActive = false;
+        clearTimeout(breathingInterval);
+        if(startStopBreathingBtn) {
+            startStopBreathingBtn.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> Iniciar';
+            startStopBreathingBtn.setAttribute('aria-label', 'Iniciar ciclo de respiração');
+        }
+        if (breathingGuideTextEl) breathingGuideTextEl.textContent = explicitPause ? 'Ciclo Pausado' : 'Iniciar Ciclo';
+        if (breathingInstructionTextEl) breathingInstructionTextEl.textContent = explicitPause ? 'Clique para retomar.' : 'Sincronize com o universo';
+        
+        if (breathingCircle) {
+            breathingCircle.className = 'breathing-circle'; // Reset classes
+            if (explicitPause) {
+                breathingCircle.classList.add('paused-breath-explicit'); // Classe para pausa iniciada pelo usuário
+            }
+        }
+    }
+    
+    // Estado inicial do texto do círculo de respiração (se não estiver definido no HTML)
+    if (breathingGuideTextEl && !breathingGuideTextEl.textContent.trim()) {
+        breathingGuideTextEl.textContent = "Iniciar Ciclo";
+    }
+    if (breathingInstructionTextEl && !breathingInstructionTextEl.textContent.trim()) {
+        breathingInstructionTextEl.textContent = "Sincronize com o universo";
+    }
+
+
+    if (startStopBreathingBtn && breathingCircle && breathingGuideTextEl && breathingInstructionTextEl) {
+        startStopBreathingBtn.addEventListener('click', () => {
+            if (isBreathingActive) {
+                stopBreathingCycle();
+            } else {
+                startBreathingCycle();
+            }
+        });
+        
+        breathingCircle.addEventListener('click', () => {
+             if (isBreathingActive) {
+                stopBreathingCycle();
+            } else {
+                startBreathingCycle();
+            }
+        });
+
+        breathingCircle.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                if (isBreathingActive) {
+                    stopBreathingCycle();
+                } else {
+                    startBreathingCycle();
+                }
+            }
+        });
+    }
+
+
+    // --- Câmara de Serenidade Nebular - Transmissor de Ecos Estelares ---
+    const audioButtons = document.querySelectorAll('.audio-button');
     const audioElement = document.getElementById('audioElement');
-    let currentPlayingAudioButton = null;
+    let currentlyPlayingButton = null;
+
     if (audioButtons.length > 0 && audioElement) {
         audioButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const soundSrcFromFile = this.dataset.src;
-                // Ajusta o caminho para MPA se o script está em pages/page_tea.js e sounds em assets/sounds
-                const soundSrc = soundSrcFromFile.startsWith('assets/') ? `../${soundSrcFromFile}` : soundSrcFromFile;
+            button.addEventListener('click', () => {
+                const soundSrc = button.dataset.src;
+                const isThisButtonPlaying = button === currentlyPlayingButton;
 
-                const buttonTextNode = Array.from(this.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-                const baseButtonText = buttonTextNode ? buttonTextNode.textContent.trim() : this.dataset.sound;
-                const iconEl = this.querySelector('i');
-                const originalIconClass = iconEl ? (iconEl.dataset.originalIconClass || iconEl.className) : `fas fa-${getIconForSound(this.dataset.sound)}`;
-
-                if (currentPlayingAudioButton === this) { /* ... lógica de pausar ... */
-                    audioElement.pause(); this.classList.remove('playing');
-                    if(iconEl) iconEl.className = originalIconClass;
-                    this.innerHTML = `<i class="${originalIconClass}"></i> ${baseButtonText}`;
-                    this.setAttribute('aria-label', `Ouvir ${baseButtonText}`); currentPlayingAudioButton = null;
-                    if(window.speakFromReader) window.speakFromReader(`Som de ${baseButtonText} pausado.`);
-                } else { /* ... lógica de tocar ... */
-                    if (currentPlayingAudioButton) { /* ... parar som anterior ... */
-                        audioElement.pause();
-                        const prevBtnTxtNd = Array.from(currentPlayingAudioButton.childNodes).find(n=>n.nodeType===Node.TEXT_NODE);
-                        const prevBsTxt = prevBtnTxtNd ? prevBtnTxtNd.textContent.replace('Parar ','').trim() : currentPlayingAudioButton.dataset.sound;
-                        const prevIcEl = currentPlayingAudioButton.querySelector('i');
-                        const prevOrigIc = prevIcEl ? (prevIcEl.dataset.originalIconClass || prevIcEl.className) : `fas fa-${getIconForSound(currentPlayingAudioButton.dataset.sound)}`;
-                        currentPlayingAudioButton.classList.remove('playing');
-                        if(prevIcEl) prevIcEl.className = prevOrigIcon;
-                        currentPlayingAudioButton.innerHTML = `<i class="${prevOrigIcon}"></i> ${prevBsTxt}`;
-                        currentPlayingAudioButton.setAttribute('aria-label',`Ouvir ${prevBsTxt}`);
+                // Se outro botão estava tocando, para ele e remove a classe
+                if (currentlyPlayingButton && currentlyPlayingButton !== button) {
+                    currentlyPlayingButton.classList.remove('playing');
+                    // Atualizar ícone para 'play' no botão anterior se houver
+                    const prevIcon = currentlyPlayingButton.querySelector('i');
+                    if (prevIcon) {
+                        prevIcon.classList.remove('fa-pause-circle'); // Exemplo, use o ícone de play que você definiu
+                        prevIcon.classList.add('fa-play-circle'); // Exemplo
                     }
-                    audioElement.src = soundSrc; audioElement.play()
-                        .then(()=>{
-                            this.classList.add('playing');
-                            if(iconEl){iconEl.dataset.originalIconClass = originalIconClass; iconEl.className = 'fas fa-stop-circle';}
-                            this.innerHTML = `<i class="fas fa-stop-circle"></i> Parar ${baseButtonText}`;
-                            this.setAttribute('aria-label',`Parar som de ${baseButtonText}`); currentPlayingAudioButton = this;
-                            if(window.speakFromReader) window.speakFromReader(`Tocando som de ${baseButtonText}.`);
-                        }).catch(e=>{console.error("Erro ao tocar áudio:",soundSrc,e);if(window.speakFromReader)window.speakFromReader(`Erro ao tocar ${baseButtonText}.`);this.classList.remove('playing');if(iconEl)iconEl.className=originalIconClass;this.innerHTML=`<i class="${originalIconClass}"></i> ${baseButtonText}`;});
+                }
+                
+                if (isThisButtonPlaying) { // Botão clicado é o que está tocando: Pausa
+                    audioElement.pause();
+                    button.classList.remove('playing');
+                    currentlyPlayingButton = null;
+                    // Atualizar ícone para 'play'
+                     const icon = button.querySelector('i');
+                     if (icon) {
+                         icon.classList.remove('fa-pause-circle'); // Exemplo
+                         icon.classList.add('fa-play-circle'); // Exemplo
+                     }
+
+                } else { // Novo som ou som pausado é clicado: Toca
+                    audioElement.src = soundSrc;
+                    audioElement.play()
+                        .then(() => {
+                            button.classList.add('playing');
+                            currentlyPlayingButton = button;
+                            // Atualizar ícone para 'pause'
+                            const icon = button.querySelector('i');
+                            if (icon) {
+                                icon.classList.remove('fa-play-circle'); // Exemplo
+                                icon.classList.add('fa-pause-circle'); // Exemplo
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Erro ao tocar o áudio:", error.message);
+                            // Remover classe 'playing' se falhar
+                            button.classList.remove('playing');
+                            if(currentlyPlayingButton === button) currentlyPlayingButton = null;
+                        });
                 }
             });
         });
-        audioElement.addEventListener('ended', () => { /* ... lógica de ended ... */
-            if(currentPlayingAudioButton){
-                const btnTxtNd = Array.from(currentPlayingAudioButton.childNodes).find(n=>n.nodeType===Node.TEXT_NODE);
-                const bsTxt = btnTxtNode ? btnTxtNd.textContent.replace('Parar ','').trim() : currentPlayingAudioButton.dataset.sound;
-                const icEl = currentPlayingAudioButton.querySelector('i');
-                const origIc = icEl ? (icEl.dataset.originalIconClass || icEl.className) : `fas fa-${getIconForSound(currentPlayingAudioButton.dataset.sound)}`;
-                currentPlayingAudioButton.classList.remove('playing'); if(icEl)icEl.className = origIc;
-                currentPlayingAudioButton.innerHTML = `<i class="${origIc}"></i> ${bsTxt}`;
-                currentPlayingAudioButton.setAttribute('aria-label',`Ouvir ${bsTxt}`); currentPlayingAudioButton = null;
+
+        audioElement.addEventListener('ended', () => {
+            if (currentlyPlayingButton) {
+                currentlyPlayingButton.classList.remove('playing');
+                // Atualizar ícone para 'play' no botão que terminou
+                 const icon = currentlyPlayingButton.querySelector('i');
+                 if (icon) {
+                     icon.classList.remove('fa-pause-circle'); // Exemplo
+                     icon.classList.add('fa-play-circle'); // Exemplo
+                 }
+                currentlyPlayingButton = null;
             }
         });
-    }
-    function getIconForSound(soundName) { const map={'rain':'cloud-rain','forest':'pastafarianism','meditation':'om','waves':'water'}; return map[soundName]||'music';}
 
-
-    // --- 4. JOGO DE SEQUÊNCIA LÓGICA (Placeholder) ---
-    if (document.getElementById('logicGameArea')) console.log("Nave Azul: Placeholder Jogo de Sequência Lógica pronto.");
-
-    // --- 5. COMUNICAÇÃO ALTERNATIVA ---
-    // ... (código da comunicação alternativa como na resposta anterior) ...
-    const commCardBtns = document.querySelectorAll('#communicationBoard .comm-card-btn');
-    if (commCardBtns.length > 0) {
-        commCardBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const mainTextNode = Array.from(this.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
-                const textToSpeak = mainTextNode ? mainTextNode.textContent.trim() : (this.querySelector('h4') ? this.querySelector('h4').textContent.trim() : this.innerText.trim());
-                if (textToSpeak && window.speakFromReader) window.speakFromReader(textToSpeak);
-            });
+        audioElement.addEventListener('error', (e) => {
+            console.error("Erro no elemento de áudio:", e);
+            if (currentlyPlayingButton) {
+                currentlyPlayingButton.classList.remove('playing');
+                 const icon = currentlyPlayingButton.querySelector('i');
+                 if (icon) {
+                     icon.classList.remove('fa-pause-circle'); 
+                     icon.classList.add('fa-play-circle'); 
+                 }
+                currentlyPlayingButton = null;
+            }
+            // Poderia exibir uma mensagem para o usuário aqui.
         });
     }
-
-    // --- 6. DESAFIOS SENSORIAIS (Placeholder) ---
-    if (document.getElementById('sensoryChallengeArea')) console.log("Nave Azul: Placeholder Desafios Sensoriais pronto.");
-
-    // --- Dicionário Visual ---
-    // ... (código do dicionário visual como na resposta anterior) ...
-    const symbolCards = document.querySelectorAll('#symbolsTitleExisting ~ .symbols-grid .symbol-card');
-    if (symbolCards.length > 0) {
-        symbolCards.forEach(card => {
-            card.addEventListener('click', function() {
-                const wasActive = this.classList.contains('active');
-                symbolCards.forEach(c => c.classList.remove('active'));
-                if (!wasActive) {
-                    this.classList.add('active');
-                    const textToRead = this.dataset.textToRead || this.querySelector('h4').textContent;
-                    if(window.speakFromReader) window.speakFromReader(textToRead);
-                }
-            });
-            card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }});
-        });
-    }
-
-    // Chamadas de inicialização que dependem de elementos específicos desta página
-    if (document.getElementById('emotionGames')) loadEmotionChallenge();
-    if (document.getElementById('interactiveRoutines')) loadRoutines();
-    if (breathingCircleEl && startStopBreathingBtnEl) updateBreathingVisualsAndText(); // Configura estado inicial do botão de respiração
-
-
-    console.log("Nave Azul: Interações do Módulo de Exploração totalmente carregadas!");
-};
+});

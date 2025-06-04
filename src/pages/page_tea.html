@@ -11,7 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=OpenDyslexic:wght@400;700&display=swap"
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
+  <link rel="shortcut icon" href="/src/assets/img/logo_fundo_branco.png" type="image/x-icon" />
   <link rel="stylesheet" href="/src/assets/css/config_global.css">
   <link rel="stylesheet" href="/src/assets/css/header.css">
   <link rel="stylesheet" href="/src/assets/css/page_tea.css">
@@ -21,15 +21,17 @@
   <script src="/src/assets/js/core/accessibility_handler.js" defer></script>
   <script src="/src/assets/js/core/screen_reader.js" defer></script>
 
-  <script src="/src/assets/js/pages/page_home.js" defer></script>
-  <script src="/src/assets/js/pages/page_tea.js" defer></script>
-  <script src="/src/assets/js/pages/page_cuidador.js" defer></script>
-  <script src="/src/assets/js/pages/page_sobre.js" defer></script>
+  <script src="/src/assets/js/header.js" defer></script>
+  <script src="/src/assets/js/accessibility_handler.js" defer></script>
+  <script src="/src/assets/js/footer.js" defer></script>
+  <script src="/src/assets/js/main_script.js" defer></script>
+  <script src="/src/assets/js/page_home.js" defer></script>
+  <script src="/src/assets/js/page_tea.js" defer></script>
 
 </head>
 
 <body>
-  
+
   <nav class="main-nav" id="mainNav">
     <div class="container nav-container">
       <div class="nav-logo">
@@ -40,9 +42,9 @@
       </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="/index.html" class="nav-item">Início</a></li>
-        <li><a href="/src/pages/page_tea.html" class="nav-item active-link">Módulo de Exploração</a></li>
-        <li><a href="/src/pages/page_cuidador.html" class="nav-item">Base de Apoio</a></li>
-        <li><a href="/src/pages/sobre.html" class="nav-item">Sobre a Nave</a>
+        <li><a href="/src/pages/page_tea.html" class="nav-item active-link">Universo TEA</a></li>
+        <li><a href="/src/pages/page_cuidador.html" class="nav-item">Apoio ao Cuidador</a></li>
+        <li><a href="/src/pages/page_sobre.html" class="nav-item">Sobre</a>
         </li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
@@ -54,12 +56,12 @@
   </nav>
 
   <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Abrir painel de acessibilidade"
-    aria-expanded="false">
-    <i class="fas fa-universal-access"></i>
+    aria-expanded="false" aria-controls="accessibilityPanel">
+    <i class="fas fa-universal-access" aria-hidden="true"></i>
   </button>
-  <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityPanelTitle"
+  <aside class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityPanelTitle"
     aria-hidden="true">
-    <h3 id="accessibilityPanelTitle">Ajustes de Acessibilidade</h3>
+    <h3 id="accessibilityPanelTitle" class="panel-title">Ajustes de Acessibilidade</h3>
     <div class="accessibility-option">
       <label for="decreaseFont">Tamanho da Fonte</label>
       <div class="font-size-controls">
@@ -93,183 +95,218 @@
     </div>
     <div class="accessibility-option">
       <label for="screenReaderToggle">Leitor de Tela (Experimental)</label>
-      <button class="accessibility-button" id="screenReaderToggle" aria-pressed="false">Ativar</button>
+      <button class="accessibility-button" id="screenReaderToggle" aria-pressed="false"
+        aria-controls="screenReaderControls">Ativar</button>
     </div>
     <div id="screenReaderControls" style="display: none; text-align: center; margin-top: 10px;">
-      <button class="accessibility-button" id="readPageContent"><i class="fas fa-play"></i> Ler Página</button>
-      <button class="accessibility-button" id="pauseReading"><i class="fas fa-pause"></i> Pausar</button>
-      <button class="accessibility-button" id="stopReading"><i class="fas fa-stop"></i> Parar</button>
+      <button class="accessibility-button" id="readPageContent"><i class="fas fa-play" aria-hidden="true"></i> Ler
+        Página</button>
+      <button class="accessibility-button" id="pauseReading"><i class="fas fa-pause" aria-hidden="true"></i>
+        Pausar</button>
+      <button class="accessibility-button" id="stopReading"><i class="fas fa-stop" aria-hidden="true"></i>
+        Parar</button>
     </div>
     <div class="accessibility-option" style="margin-top: 15px;">
       <button class="accessibility-button" id="resetSettings" style="width: 100%; background-color: var(--warm-red);">
         Redefinir Ajustes
       </button>
     </div>
-  </div>
+  </aside>
 
 
-  <main>
+  <main id="mainContent">
     <div class="page active" id="teaPage" role="document" aria-labelledby="teaPageTitleContent">
       <div class="container page-container exploration-bay">
 
         <header class="page-internal-header">
-          <h1 class="page-title" id="teaPageTitleContent"><i class="fas fa-rocket-launch"></i> Módulo de Exploração</h1>
+          <h1 class="page-title" id="teaPageTitleContent"><i class="fas fa-rocket-launch" aria-hidden="true"></i> Módulo
+            de Exploração</h1>
           <p class="page-subtitle">Suas ferramentas e descobertas intergalácticas para uma jornada única!</p>
         </header>
 
         <section class="exploration-module interactive-panel" id="emotionGames" aria-labelledby="emotionGamesTitle">
-          <h3 id="emotionGamesTitle" class="section-title"><i class="fas fa-brain-circuit"></i> Decodificador de Emoções
-          </h3>
-          <p class="section-description">Aprenda a identificar expressões e sentimentos em diferentes avatares cósmicos.
-            Desafie-se e suba de nível!</p>
-          <div class="game-interface-placeholder" id="emotionGameArea">
-            <div class="emotion-display">
+          <header class="module-header">
+            <h2 id="emotionGamesTitle" class="section-title"><i class="fas fa-brain-circuit" aria-hidden="true"></i>
+              Decodificador de Emoções</h2>
+            <p class="section-description">Aprenda a identificar expressões e sentimentos em diferentes avatares
+              cósmicos. Desafie-se e suba de nível!</p>
+          </header>
+          <div class="module-content game-interface-placeholder" id="emotionGameArea">
+            <figure class="emotion-display">
               <img src="https://via.placeholder.com/200x200/0C1627/00BEFF?text=Expressão+Facial"
-                alt="Expressão facial para identificar" id="emotionImage">
-            </div>
-            <p id="emotionGameInstruction">Qual emoção este avatar está sentindo?</p>
-            <div class="emotion-options">
+                alt="Expressão facial de um avatar para identificar a emoção." id="emotionImage">
+            </figure>
+            <p id="emotionGameInstruction" class="module-instruction">Qual emoção este avatar está sentindo?</p>
+            <div class="emotion-options" role="group" aria-labelledby="emotionGameInstruction">
               <button class="futuristic-button emotion-option-btn" data-emotion="alegria">Alegria <i
-                  class="fas fa-laugh-beam"></i></button>
+                  class="fas fa-laugh-beam" aria-hidden="true"></i></button>
               <button class="futuristic-button emotion-option-btn" data-emotion="tristeza">Tristeza <i
-                  class="fas fa-sad-tear"></i></button>
-              <button class="futuristic-button emotion-option-btn" data-emotion="raiva">Raiva <i
-                  class="fas fa-angry"></i></button>
+                  class="fas fa-sad-tear" aria-hidden="true"></i></button>
+              <button class="futuristic-button emotion-option-btn" data-emotion="raiva">Raiva <i class="fas fa-angry"
+                  aria-hidden="true"></i></button>
               <button class="futuristic-button emotion-option-btn" data-emotion="surpresa">Surpresa <i
-                  class="fas fa-surprise"></i></button>
+                  class="fas fa-surprise" aria-hidden="true"></i></button>
             </div>
-            <div class="emotion-feedback" id="emotionGameFeedback">Selecione uma emoção!</div>
+            <div class="emotion-feedback" id="emotionGameFeedback" aria-live="polite">Selecione uma emoção!</div>
             <div class="emotion-score">Pontuação Estelar: <span id="emotionGameScore">0</span></div>
           </div>
         </section>
 
         <section class="exploration-module interactive-panel" id="interactiveRoutines" aria-labelledby="routinesTitle">
-          <h3 id="routinesTitle" class="section-title"><i class="fas fa-clipboard-list-check"></i> Planejador de Missões
-            Diárias</h3>
-          <p class="section-description">Organize suas tarefas como um verdadeiro comandante! Crie sua rotina, marque o
-            que foi feito e conquiste o dia.</p>
-          <div class="routine-builder-placeholder" id="routineArea">
+          <header class="module-header">
+            <h2 id="routinesTitle" class="section-title"><i class="fas fa-clipboard-list-check" aria-hidden="true"></i>
+              Planejador de Missões Diárias</h2>
+            <p class="section-description">Organize suas tarefas como um verdadeiro comandante! Crie sua rotina, marque
+              o que foi feito e conquiste o dia.</p>
+          </header>
+          <div class="module-content routine-builder-placeholder" id="routineArea">
             <div class="routine-list-header">
-              <h4>Minha Missão de Hoje: <span id="currentDateRoutine"></span></h4>
-              <button class="futuristic-button small-btn" id="addRoutineTaskBtn"><i class="fas fa-plus-circle"></i> Nova
-                Tarefa</button>
+              <h3>Minha Missão de Hoje: <span id="currentDateRoutine"></span></h3>
+              <button class="futuristic-button small-btn" id="addRoutineTaskBtn"><i class="fas fa-plus-circle"
+                  aria-hidden="true"></i> Nova Tarefa</button>
             </div>
-            <ul class="routine-list" id="routineTaskList">
+            <ul class="routine-list" id="routineTaskList" aria-label="Lista de tarefas da missão diária">
               <li class="routine-task-item completed">
                 <input type="checkbox" id="task1" checked disabled>
-                <label for="task1"><i class="fas fa-mug-saucer"></i> Tomar Café da Manhã Cósmico</label>
-                <span class="task-reward-visual"><i class="fas fa-star"></i></span>
+                <label for="task1"><i class="fas fa-mug-saucer" aria-hidden="true"></i> Tomar Café da Manhã
+                  Cósmico</label>
+                <span class="task-reward-visual" aria-label="Recompensa: Estrela"><i class="fas fa-star"
+                    aria-hidden="true"></i></span>
               </li>
               <li class="routine-task-item">
                 <input type="checkbox" id="task2" disabled>
-                <label for="task2"><i class="fas fa-book-spells"></i> Estudar Constelações</label>
-                <span class="task-reward-visual"></span>
+                
+                <span class="task-reward-visual" aria-label="Recompensa: Estrela"></span>
               </li>
             </ul>
-            <p class="routine-placeholder-text">Funcionalidade de criação de rotinas em desenvolvimento.</p>
+            <p class="routine-placeholder-text"><em>Funcionalidade de criação de rotinas em desenvolvimento.</em></p>
           </div>
         </section>
 
         <section class="exploration-module interactive-panel" id="quietZone" aria-labelledby="quietZoneTitle">
-          <h3 id="quietZoneTitle" class="section-title"><i class="fas fa-moon-stars"></i> Câmara de Serenidade Nebular
-          </h3>
-          <p class="section-description">Recarregue suas energias neste espaço de tranquilidade. Escolha seus sons,
-            cores e exercícios de respiração.</p>
-          <div class="quiet-zone-controls">
-            <div class="tool-item" aria-labelledby="breathingExerciseTitle">
-              <h4 id="breathingExerciseTitle" class="tool-item-title"><i class="fas fa-lungs"></i> Nebulosa da
-                Respiração Cósmica</h4>
+          <header class="module-header">
+            <h2 id="quietZoneTitle" class="section-title"><i class="fas fa-moon-stars" aria-hidden="true"></i> Câmara de
+              Serenidade Nebular</h2>
+            <p class="section-description">Recarregue suas energias neste espaço de tranquilidade. Escolha seus sons,
+              cores e exercícios de respiração.</p>
+          </header>
+          <div class="module-content quiet-zone-controls">
+            <div class="tool-item" id="breathingTool" aria-labelledby="breathingExerciseTitle">
+              <h3 id="breathingExerciseTitle" class="tool-item-title"><i class="fas fa-lungs" aria-hidden="true"></i>
+                Nebulosa da Respiração Cósmica</h3>
               <div class="breathing-area">
-                <div class="breathing-circle" id="breathingCircle" role="button"
-                  aria-label="Círculo de respiração. Toque para iniciar ou pausar o ciclo de respiração cósmica.">
+                <div class="breathing-circle" id="breathingCircle" role="button" tabindex="0"
+                  aria-label="Círculo de respiração. Toque ou pressione Enter para iniciar ou pausar o ciclo de respiração cósmica.">
                   <div class="breathing-circle-inner"></div>
                   <div class="breathing-text-container">
-                    <span id="breathingGuideText">Iniciar Ciclo</span>
-                    <span id="breathingInstructionText">Sincronize com o universo</span>
+                    <span id="breathingGuideText" class="breathing-status-text">Iniciar Ciclo</span>
+                    <span id="breathingInstructionText" class="breathing-instruction">Sincronize com o universo</span>
                   </div>
                 </div>
                 <div class="breathing-controls">
-                  <button class="control-button futuristic-button" id="startStopBreathingBtn"><i
-                      class="fas fa-play"></i> Iniciar</button>
+                  <button class="control-button futuristic-button" id="startStopBreathingBtn"
+                    aria-controls="breathingCircle"><i class="fas fa-play" aria-hidden="true"></i> Iniciar</button>
                 </div>
               </div>
             </div>
-            <div class="tool-item" aria-labelledby="calmingSoundsTitle">
-              <h4 id="calmingSoundsTitle" class="tool-item-title"><i class="fas fa-satellite-dish"></i> Transmissor de
-                Ecos Estelares</h4>
+            <div class="tool-item" id="soundTool" aria-labelledby="calmingSoundsTitle">
+              <h3 id="calmingSoundsTitle" class="tool-item-title"><i class="fas fa-satellite-dish"
+                  aria-hidden="true"></i> Transmissor de Ecos Estelares</h3>
               <div class="audio-player">
-                <div class="audio-controls">
+                <div class="audio-controls" role="group" aria-label="Controles de sons relaxantes">
                   <button class="audio-button futuristic-button" data-sound="rain"
-                    data-src="/src/assets/sounds/rain.mp3" aria-label="Ouvir Chuva Cósmica"><i
-                      class="fas fa-cloud-rain"></i> Chuva Cósmica</button>
-                  <button class="audio-button futuristic-button" data-sound="forest" data-src="assets/sounds/forest.mp3"
-                    aria-label="Ouvir Floresta Alienígena"><i class="fas fa-pastafarianism"></i> Floresta
-                    Alienígena</button>
+                    data-src="/src/assets/sounds/rain-sound.mp3" aria-label="Ouvir Chuva Cósmica"><i class="fas fa-cloud-rain"
+                      aria-hidden="true"></i> Chuva Cósmica</button>
+
+                  <button class="audio-button futuristic-button" data-sound="forest"
+                    data-src="/src/assets/sounds/forestbird.mp3" aria-label="Ouvir Floresta"><i
+                      class="fas fa-pastafarianism" aria-hidden="true"></i> Floresta Espacial</button>
+
                   <button class="audio-button futuristic-button" data-sound="meditation"
-                    data-src="assets/sounds/meditation.mp3" aria-label="Ouvir Meditação Zen do Vácuo"><i
-                      class="fas fa-om"></i> Zen do Vácuo</button>
-                  <button class="audio-button futuristic-button" data-sound="waves" data-src="assets/sounds/waves.mp3"
-                    aria-label="Ouvir Ondas do Mar Nebuloso"><i class="fas fa-water"></i> Mar Nebuloso</button>
+                    data-src="/src/assets/sounds/padsound-meditation.mp3" aria-label="Ouvir Meditação Zen do Vácuo"><i
+                      class="fas fa-om" aria-hidden="true"></i> Zen do Vácuo</button>
+
+                  <button class="audio-button futuristic-button" data-sound="waves"
+                    data-src="/src/assets/sounds/waves.mp3" aria-label="Ouvir Ondas do Mar Nebuloso"><i
+                      class="fas fa-water" aria-hidden="true"></i> Mar Nebuloso</button>
                 </div>
                 <audio id="audioElement" style="display:none;"></audio>
               </div>
             </div>
-            <div class="tool-item placeholder-animation-zone">
-              <h4 class="tool-item-title"><i class="fas fa-atom-simple"></i> Visualizador de Partículas Zen</h4>
-              <div class="zen-animation-placeholder">Animações relaxantes em breve!</div>
+            <div class="tool-item placeholder-animation-zone" id="zenParticlesTool" aria-labelledby="zenParticlesTitle">
+              <h3 id="zenParticlesTitle" class="tool-item-title"><i class="fas fa-atom-simple" aria-hidden="true"></i>
+                Visualizador de Partículas Zen</h3>
+              <div class="zen-animation-placeholder"><em>Animações relaxantes em breve!</em></div>
             </div>
           </div>
         </section>
 
         <section class="exploration-module interactive-panel" id="logicGames" aria-labelledby="logicGamesTitle">
-          <h3 id="logicGamesTitle" class="section-title"><i class="fas fa-network-wired"></i> Construtor de Sequências
-            Lógicas</h3>
-          <p class="section-description">Desvende padrões e complete sequências para treinar seu raciocínio lógico
-            intergaláctico.</p>
-          <div class="game-interface-placeholder" id="logicGameArea">
-            <p>Jogo de sequência lógica em construção. Imagine ordenar naves por tamanho ou completar padrões de
-              estrelas!</p>
-            <div class="game-status-badge">Em Desenvolvimento</div>
+          <header class="module-header">
+            <h2 id="logicGamesTitle" class="section-title"><i class="fas fa-network-wired" aria-hidden="true"></i>
+              Construtor de Sequências Lógicas</h2>
+            <p class="section-description">Desvende padrões e complete sequências para treinar seu raciocínio lógico
+              intergaláctico.</p>
+          </header>
+          <div class="module-content game-interface-placeholder" id="logicGameArea">
+            <p><em>Jogo de sequência lógica em construção. Imagine ordenar naves por tamanho ou completar padrões de
+                estrelas!</em></p>
+            <div class="game-status-badge" aria-label="Status: Em Desenvolvimento">Em Desenvolvimento</div>
           </div>
         </section>
 
         <section class="exploration-module interactive-panel" id="communicationBoard" aria-labelledby="commBoardTitle">
-          <h3 id="commBoardTitle" class="section-title"><i class="fas fa-comments-alt"></i> Painel de Comunicação
-            Universal</h3>
-          <p class="section-description">Expresse suas ideias, sentimentos e necessidades com este comunicador visual
-            interativo.</p>
-          <div class="communication-grid-placeholder" id="commBoardArea">
-            <button class="futuristic-button comm-card-btn"><i class="fas fa-smile"></i> Estou Feliz</button>
-            <button class="futuristic-button comm-card-btn"><i class="fas fa-utensils"></i> Quero Comer</button>
-            <button class="futuristic-button comm-card-btn"><i class="fas fa-gamepad"></i> Quero Brincar</button>
-            <button class="futuristic-button comm-card-btn"><i class="fas fa-question-circle"></i> Ajuda</button>
-            <p class="routine-placeholder-text">Funcionalidade de CAA simplificada em desenvolvimento.</p>
+          <header class="module-header">
+            <h2 id="commBoardTitle" class="section-title"><i class="fas fa-comments-alt" aria-hidden="true"></i> Painel
+              de Comunicação Universal</h2>
+            <p class="section-description">Expresse suas ideias, sentimentos e necessidades com este comunicador visual
+              interativo.</p>
+          </header>
+          <div class="module-content communication-grid-placeholder" id="commBoardArea" role="region"
+            aria-label="Painel de comunicação com cartões">
+            <button class="futuristic-button comm-card-btn"><i class="fas fa-smile" aria-hidden="true"></i> Estou
+              Feliz</button>
+            <button class="futuristic-button comm-card-btn"><i class="fas fa-utensils" aria-hidden="true"></i> Quero
+              Comer</button>
+            <button class="futuristic-button comm-card-btn"><i class="fas fa-gamepad" aria-hidden="true"></i> Quero
+              Brincar</button>
+            <button class="futuristic-button comm-card-btn"><i class="fas fa-question-circle" aria-hidden="true"></i>
+              Ajuda</button>
+            <p class="routine-placeholder-text"><em>Funcionalidade de CAA simplificada em desenvolvimento.</em></p>
           </div>
         </section>
 
         <section class="exploration-module interactive-panel" id="sensoryChallenges"
           aria-labelledby="sensoryChallengesTitle">
-          <h3 id="sensoryChallengesTitle" class="section-title"><i class="fas fa-hand-paper"></i> Laboratório de
-            Exploração Sensorial</h3>
-          <p class="section-description">Interaja com diferentes texturas, sons e luzes em um ambiente seguro e
-            adaptável.</p>
-          <div class="sensory-zone-placeholder" id="sensoryChallengeArea">
-            <p>Desafios sensoriais (toque, som, luz) com controle de intensidade em breve!</p>
-            <div class="game-status-badge">Em Desenvolvimento</div>
+          <header class="module-header">
+            <h2 id="sensoryChallengesTitle" class="section-title"><i class="fas fa-hand-paper" aria-hidden="true"></i>
+              Laboratório de Exploração Sensorial</h2>
+            <p class="section-description">Interaja com diferentes texturas, sons e luzes em um ambiente seguro e
+              adaptável.</p>
+          </header>
+          <div class="module-content sensory-zone-placeholder" id="sensoryChallengeArea">
+            <p><em>Desafios sensoriais (toque, som, luz) com controle de intensidade em breve!</em></p>
+            <div class="game-status-badge" aria-label="Status: Em Desenvolvimento">Em Desenvolvimento</div>
           </div>
         </section>
 
-        <section class="exploration-module interactive-panel" aria-labelledby="symbolsTitleExisting">
-          <h3 id="symbolsTitleExisting" class="section-title"><i class="fas fa-satellite"></i> Holo-Dicionário Visual
-          </h3>
-          <p class="section-description">Decodifique o universo da comunicação! Toque nos símbolos para ativar suas
-            descrições e sons.</p>
-          <div class="symbols-grid">
-            <div class="symbol-card" tabindex="0" data-text-to-read="Casa. Meu porto seguro no universo.">
-              <i class="icon fas fa-home-lg-alt"></i>
-              <h4>Lar Doce Lar</h4>
-              <p>Meu porto seguro no universo.</p>
-            </div>
+        <section class="exploration-module interactive-panel" id="visualDictionary"
+          aria-labelledby="symbolsTitleExisting">
+          <header class="module-header">
+            <h2 id="symbolsTitleExisting" class="section-title"><i class="fas fa-satellite" aria-hidden="true"></i>
+              Holo-Dicionário Visual</h2>
+            <p class="section-description">Decodifique o universo da comunicação! Toque nos símbolos para ativar suas
+              descrições e sons.</p>
+          </header>
+          <div class="module-content symbols-grid" id="visualDictionaryArea">
+            <figure class="symbol-card" tabindex="0" role="button" aria-labelledby="symbolCard1Title"
+              aria-describedby="symbolCard1Desc" data-text-to-read="Casa. Meu porto seguro no universo.">
+              <i class="icon fas fa-home-lg-alt" aria-hidden="true"></i>
+              <figcaption>
+                <h3 id="symbolCard1Title" class="symbol-card-title">Lar Doce Lar</h3>
+                <p id="symbolCard1Desc" class="symbol-card-description">Meu porto seguro no universo.</p>
+              </figcaption>
+            </figure>
           </div>
         </section>
 
@@ -283,51 +320,34 @@
         <path
           d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,900.5,50.84,990.24,70.47c60.55,13.07,120.53,25.32,180.44,30.34,60.27,5.07,120.26-3.05,180.18-10.06L1500,120H0V57.28Z"
           class="shape-fill"></path>
-      </svg> </div>
+      </svg>
+    </div>
+
     <div class="footer-container container">
       <div class="footer-column footer-about">
-        <div class="footer-logo"> <a href="/index.html" aria-label="Página Inicial da Nave Azul"> <i
-              class="fas fa-rocket nav-logo-icon"></i> <span>Nave Azul</span> </a> </div>
+        <div class="footer-logo">
+          <a href="#" data-page="homePage">
+            <i class="fas fa-rocket nav-logo-icon"></i>
+            <span>Nave Azul</span>
+          </a>
+        </div>
         <p>Um espaço de acolhimento, informação e recursos para a comunidade do Transtorno do Espectro Autista.
           Navegando juntos por um mundo mais inclusivo.</p>
       </div>
       <div class="footer-column">
         <h4>Links Rápidos</h4>
         <ul>
-          <li><a href="/index.html" class="footer-link"><i class="fas fa-angle-right"></i> Início</a></li>
-          <li><a href="/src/pages/page_tea.html" class="footer-link"><i class="fas fa-angle-right"></i> Módulo de
-              Exploração</a></li>
-          <li><a href="/src/pages/page_cuidador.html" class="footer-link"><i class="fas fa-angle-right"></i> Base de
-              Apoio</a></li>
-          <li><a href="/src/pages/sobre.html" class="footer-link"><i class="fas fa-angle-right"></i> Sobre a Nave</a>
-          </li>
-          <li><a href="#" id="openAccessibilityFromFooter" class="footer-link"><i class="fas fa-angle-right"></i>
-              Acessibilidade</a></li>
+          <li><a href="/index.html" data-page="homePage" class="footer-link"><i class="fas fa-angle-right"></i>
+              Início</a></li>
+          <li><a href="#" class="footer-link"><i class="fas fa-angle-right"></i> Universo
+              TEA</a></li>
+          <li><a href="/src/pages/page_cuidador.html" class="footer-link"><i class="fas fa-angle-right"></i>
+              Apoio ao Cuidador</a></li>
+          <li><a href="/src/pages/page_sobre.html" class="footer-link nav-link-to-section"><i
+                class="fas fa-angle-right"></i> Sobre</a></li>
         </ul>
       </div>
-      <div class="footer-column">
-        <h4>Contato</h4>
-        <ul>
-          <li><i class="fas fa-envelope footer-contact-icon"></i> <a href="mailto:contato@naveazul.org.br"
-              class="footer-link">contato@naveazul.org.br</a></li>
-          <li><i class="fas fa-phone footer-contact-icon"></i> (XX) XXXXX-XXXX (Fictício)</li>
-          <li><i class="fas fa-map-marker-alt footer-contact-icon"></i> Brasil</li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Siga-nos</h4>
-        <p>Conecte-se conosco nas redes sociais:</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
+
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="currentYear"></span> Portal Nave Azul. Todos os direitos reservados.</p>

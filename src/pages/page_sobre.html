@@ -13,19 +13,18 @@
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
+  <link rel="shortcut icon" href="/src/assets/img/logo_fundo_branco.png" type="image/x-icon" />
   <link rel="stylesheet" href="/src/assets/css/config_global.css">
-  <link rel="stylesheet" href="/src/assets/css/animations.css">
-  <link rel="stylesheet" href="/src/assets/css/header_nav.css">
-  <link rel="stylesheet" href="/src/assets/css/main_layout.css">
+  <link rel="stylesheet" href="/src/assets/css/header.css">
+  <link rel="stylesheet" href="/src/assets/css/page_sobre.css">
   <link rel="stylesheet" href="/src/assets/css/accessibility.css">
   <link rel="stylesheet" href="/src/assets/css/footer.css">
-  <link rel="stylesheet" href="/src/assets/css/page_sobre.css">
 
-  <script src="/src/assets/js/main_script.js" defer></script>
+  <script src="/src/assets/js/header.js" defer></script>
   <script src="/src/assets/js/accessibility_handler.js" defer></script>
-  <script src="/src/assets/js/screen_reader.js" defer></script>
-  <script src="/src/assets/js/page_home_interactions.js" defer></script>
-  <script src="/src/assets/js/components_ui.js" defer></script>
+  <script src="/src/assets/js/footer.js" defer></script>
+  <script src="/src/assets/js/main_script.js" defer></script>
+  <script src="/src/assets/js/page_sobre.js" defer></script>
 </head>
 
 <body>
@@ -39,10 +38,10 @@
         </a>
       </div>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/index.html" class="nav-item active-link">Início</a></li>
+        <li><a href="/index.html" class="nav-item">Início</a></li>
         <li><a href="/src/pages/page_tea.html" class="nav-item">Universo TEA</a></li>
-        <li><a href="/src/pages/page_cuidador.html" class="nav-item">Apoio ao Cuidador</a></li>
-        <li><a href="/src/pages/page_sobre.html" class="nav-item">Sobre</a>
+        <li><a href="/src/pages/page_cuidador.html" class="nav-item ">Apoio ao Cuidador</a></li>
+        <li><a href="/src/pages/page_sobre.html" class="nav-item active-link">Sobre</a>
         </li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
@@ -92,88 +91,193 @@
       <div class="container page-container about-us-bay">
 
         <header class="page-internal-header">
-          <h1 class="page-title" id="sobrePageTitleContent"><i class="fas fa-info-circle"></i> Sobre a Nave Azul</h1>
-          <p class="page-subtitle">Conheça a história, a tripulação e a missão por trás deste portal.</p>
-        </header>
-
-        <section class="about-project-section content-module" aria-labelledby="projectOriginTitle">
-          <h2 id="projectOriginTitle" class="section-title"><i class="fas fa-flag-checkered"></i> Origem da Missão</h2>
-          <p>A Nave Azul decolou como um projeto visionário durante o <strong>Hackathon da UniCesumar</strong>, com o
-            objetivo primordial de criar uma ferramenta digital inovadora e impactante para suprir necessidades cruciais
-            no apoio a pessoas com Transtorno do Espectro Autista (TEA) e suas famílias.</p>
-          <p>Nossa equipe identificou a carência de recursos integrados, acessíveis e engajadores que pudessem oferecer
-            tanto ferramentas práticas para o dia a dia quanto um espaço de acolhimento e informação de qualidade.
-            Assim, a Nave Azul foi concebida para ser mais que um site: uma plataforma de exploração, aprendizado e
-            conexão.</p>
-        </section>
-
-        <section class="team-section content-module" aria-labelledby="crewTitle">
-          <h2 id="crewTitle" class="section-title"><i class="fas fa-users-astronaut"></i> Nossa Tripulação Estelar</h2>
-          <p class="section-description">Conheça os exploradores e engenheiros que tornaram esta jornada possível:</p>
-          <div class="team-cards-grid">
-            <div class="team-card">
-              <img src="https://via.placeholder.com/150/00BEFF/0C1627?text=Dev+1" alt="Foto do Desenvolvedor 1"
-                class="team-member-photo">
-              <h4 class="team-member-name">Nome do Desenvolvedor 1</h4>
-              <p class="team-member-role">Líder de Engenharia de Software / Arquiteto da Nave</p>
-              <p class="team-member-bio">Responsável pela arquitetura geral e desenvolvimento backend/frontend.</p>
-              <div class="team-member-social">
-                <a href="#" aria-label="LinkedIn Desenvolvedor 1" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="GitHub Desenvolvedor 1" target="_blank"><i class="fab fa-github"></i></a>
-              </div>
-            </div>
-            <div class="team-card">
-              <img src="https://via.placeholder.com/150/90EE90/0C1627?text=Dev+2" alt="Foto do Desenvolvedor 2"
-                class="team-member-photo">
-              <h4 class="team-member-name">Nome do Desenvolvedor 2</h4>
-              <p class="team-member-role">Especialista em Interface e UX / Designer de Experiência Cósmica</p>
-              <p class="team-member-bio">Focado na usabilidade, acessibilidade e na criação de uma experiência de
-                usuário intuitiva e agradável.</p>
-              <div class="team-member-social">
-                <a href="#" aria-label="LinkedIn Desenvolvedor 2" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" aria-label="Portfolio Desenvolvedor 2" target="_blank"><i class="fas fa-globe"></i></a>
-              </div>
-            </div>
-            <div class="team-card">
-              <img src="https://via.placeholder.com/150/FFD700/0C1627?text=Colab+1" alt="Foto do Colaborador 1"
-                class="team-member-photo">
-              <h4 class="team-member-name">Nome do Colaborador 1</h4>
-              <p class="team-member-role">Consultor em TEA / Especialista em Navegação Inclusiva</p>
-              <p class="team-member-bio">Contribuiu com insights valiosos sobre as necessidades da comunidade TEA e
-                melhores práticas.</p>
-              <div class="team-member-social">
-                <a href="#" aria-label="LinkedIn Colaborador 1" target="_blank"><i class="fab fa-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="team-card">
-              <img src="https://via.placeholder.com/150/A569BD/0C1627?text=Colab+2" alt="Foto do Colaborador 2"
-                class="team-member-photo">
-              <h4 class="team-member-name">Nome do Colaborador 2</h4>
-              <p class="team-member-role">Conteudista e Pesquisador / Cartógrafo Estelar</p>
-              <p class="team-member-bio">Responsável pela pesquisa, curadoria e criação do conteúdo informativo do
-                portal.</p>
-              <div class="team-member-social">
-                <a href="#" aria-label="LinkedIn Colaborador 2" target="_blank"><i class="fab fa-linkedin"></i></a>
-              </div>
+          <div class="header-content">
+            <h1 class="page-title" id="sobrePageTitleContent"><i class="fas fa-info-circle"></i> Sobre a Nave Azul</h1>
+            <p class="page-subtitle">Conheça a história, a tripulação e a missão por trás deste portal.</p>
+          </div>
+          <div class="header-graphic">
+            <div class="orbit-circle">
+              <div class="satellite"></div>
             </div>
           </div>
-        </section>
+        </header>
 
-        <section class="documentation-section content-module" aria-labelledby="docsTitle">
-          <h2 id="docsTitle" class="section-title"><i class="fas fa-file-code"></i> Documentação e Repositórios</h2>
-          <p class="section-description">Explore os bastidores da construção da Nave Azul e contribua para futuras
-            expedições:</p>
-          <ul class="documentation-links">
-            <li><a href="#" target="_blank" class="futuristic-button document-link"><i class="fab fa-github"></i>
-                Repositório do Projeto no GitHub</a></li>
-            <li><a href="#" target="_blank" class="futuristic-button document-link"><i class="fas fa-book-open"></i>
-                Documentação Técnica Detalhada</a></li>
-            <li><a href="#" target="_blank" class="futuristic-button document-link"><i class="fas fa-file-alt"></i>
-                Relatório do Hackathon UniCesumar</a></li>
-            <li><a href="#" target="_blank" class="futuristic-button document-link"><i class="fas fa-lightbulb"></i>
-                Próximos Passos e Roadmap</a></li>
-          </ul>
-        </section>
+        <div class="timeline-container">
+          <section class="about-project-section content-module" aria-labelledby="projectOriginTitle">
+            <div class="section-icon">
+              <i class="fas fa-flag-checkered"></i>
+            </div>
+            <div class="section-content">
+              <h2 id="projectOriginTitle" class="section-title">Origem da Missão</h2>
+              <p>A Nave Azul decolou como um projeto visionário durante o <strong>Hackathon da UniCesumar</strong>, com
+                o
+                objetivo primordial de criar uma ferramenta digital inovadora e impactante para suprir necessidades
+                cruciais
+                no apoio a pessoas com Transtorno do Espectro Autista (TEA) e suas famílias.</p>
+              <p>Nossa equipe identificou a carência de recursos integrados, acessíveis e engajadores que pudessem
+                oferecer
+                tanto ferramentas práticas para o dia a dia quanto um espaço de acolhimento e informação de qualidade.
+                Assim, a Nave Azul foi concebida para ser mais que um site: uma plataforma de exploração, aprendizado e
+                conexão.</p>
+            </div>
+          </section>
+
+          <div class="timeline-divider">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+
+          <section class="team-section content-module" aria-labelledby="crewTitle">
+            <div class="section-icon">
+              <i class="fas fa-users-astronaut"></i>
+            </div>
+            <div class="section-content">
+              <h2 id="crewTitle" class="section-title">Nossa Tripulação Estelar</h2>
+              <p class="section-description">Conheça os exploradores e engenheiros que tornaram esta jornada possível:
+              </p>
+              <div class="team-cards-grid">
+                <!--Desenvolvedor 1-->
+                <div class="team-card">
+                  <div class="team-member-header">
+                    <div class="team-member-avatar">
+                      <img src="/src/assets/img/desenvolvedores/luis.png" alt="Foto do Desenvolvedor 1"
+                        class="team-member-photo">
+                      <div class="avatar-border"></div>
+                    </div>
+                    <div class="team-member-info">
+                      <h4 class="team-member-name">Luís Airton</h4>
+                      <p class="team-member-role">Desenvolvedor do Projeto</p>
+                    </div>
+                  </div>
+                  <p class="team-member-bio">Responsável pela criação e desenvolvimento do projeto.</p>
+                  <div class="team-member-social">
+                    <a href="https://www.linkedin.com/in/luisairton/" aria-label="LinkedIn Desenvolvedor 1"
+                      target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/DevLuisairton" aria-label="GitHub Desenvolvedor 1" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                  </div>
+                </div>
+                <!--Desenvolvedor 2-->
+                <div class="team-card">
+                  <div class="team-member-header">
+                    <div class="team-member-avatar">
+                      <img src="/src/assets/img/desenvolvedores/maria_eduarda.jpg" alt="Foto do Desenvolvedor 2"
+                        class="team-member-photo">
+                      <div class="avatar-border"></div>
+                    </div>
+                    <div class="team-member-info">
+                      <h4 class="team-member-name">Maria Eduarda</h4>
+                      <p class="team-member-role">Desenvolvedora do Projeto</p>
+                    </div>
+                  </div>
+                  <p class="team-member-bio">Responsável pela criação e desenvolvimento do projeto.</p>
+                  <div class="team-member-social">
+                    <a href="https://www.linkedin.com/in/maria-eduarda-prado-a11852215/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                      aria-label="LinkedIn Desenvolvedor 2" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/mariaeduardadprado?tab=overview&from=2025-06-01&to=2025-06-03"
+                      aria-label="GitHub Desenvolvedor 1" target="_blank"><i class="fab fa-github"></i></a>
+                  </div>
+                </div>
+                <!--Desenvolvvedor 3-->
+                <div class="team-card">
+                  <div class="team-member-header">
+                    <div class="team-member-avatar">
+                      <img src="/src/assets/img/desenvolvedores/Eduarda.jpg" alt="Foto do Colaborador 1"
+                        class="team-member-photo">
+                      <div class="avatar-border"></div>
+                    </div>
+                    <div class="team-member-info">
+                      <h4 class="team-member-name">Eduarda Nascimento</h4>
+                      <p class="team-member-role">Desenvolvedora do Projeto</p>
+                    </div>
+                  </div>
+                  <p class="team-member-bio">Responsável pela criação e desenvolvimento do projeto.</p>
+                  <div class="team-member-social">
+                    <a href="https://www.linkedin.com/in/eduarda-nascimento-92aa93300/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="LinkedIn Desenvolvedor 1"
+                      target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/EduardaNascimento0906" aria-label="GitHub Desenvolvedor 1" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                  </div>
+                </div>
+                <!--Desenvolvvedor 4-->
+                <div class="team-card">
+                  <div class="team-member-header">
+                    <div class="team-member-avatar">
+                      <img src="/src/assets/img/desenvolvedores/beny.jpg" alt="Foto do Colaborador 2"
+                        class="team-member-photo">
+                      <div class="avatar-border"></div>
+                    </div>
+                    <div class="team-member-info">
+                      <h4 class="team-member-name">Beny Tomonaga</h4>
+                      <p class="team-member-role">Desenvolvedor do Projeto</p>
+                    </div>
+                  </div>
+                  <p class="team-member-bio">Responsável pela criação e desenvolvimento do projeto.</p>
+                  <div class="team-member-social">
+                    <a href="https://www.linkedin.com/in/beny-tomonaga-229b3053/" aria-label="LinkedIn Desenvolvedor 1"
+                      target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/beny-tomonaga" aria-label="GitHub Desenvolvedor 1" target="_blank"><i
+                        class="fab fa-github"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div class="timeline-divider">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+
+          <section class="documentation-section content-module" aria-labelledby="docsTitle">
+            <div class="section-icon">
+              <i class="fas fa-file-code"></i>
+            </div>
+            <div class="section-content">
+              <h2 id="docsTitle" class="section-title">Documentação e Repositórios</h2>
+              <p class="section-description">Explore os bastidores da construção da Nave Azul e contribua para futuras
+                expedições:</p>
+              <div class="documentation-grid">
+                <a href="#" target="_blank" class="document-card">
+                  <div class="document-icon">
+                    <i class="fab fa-github"></i>
+                  </div>
+                  <div class="document-info">
+                    <h3>Repositório do Projeto</h3>
+                    <p>Código fonte completo no GitHub</p>
+                  </div>
+                </a>
+                <a href="#" target="_blank" class="document-card">
+                  <div class="document-icon">
+                    <i class="fas fa-book-open"></i>
+                  </div>
+                  <div class="document-info">
+                    <h3>Documentação Técnica</h3>
+                    <p>Detalhes da arquitetura e implementação</p>
+                  </div>
+                </a>
+                <a href="#" target="_blank" class="document-card">
+                  <div class="document-icon">
+                    <i class="fas fa-file-alt"></i>
+                  </div>
+                  <div class="document-info">
+                    <h3>Relatório do Hackathon</h3>
+                    <p>Resultados e processo de desenvolvimento</p>
+                  </div>
+                </a>
+                <a href="#" target="_blank" class="document-card">
+                  <div class="document-icon">
+                    <i class="fas fa-lightbulb"></i>
+                  </div>
+                  <div class="document-info">
+                    <h3>Roadmap Futuro</h3>
+                    <p>Próximos passos e planejamento</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   </main>
@@ -184,72 +288,40 @@
         <path
           d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31.74,900.5,50.84,990.24,70.47c60.55,13.07,120.53,25.32,180.44,30.34,60.27,5.07,120.26-3.05,180.18-10.06L1500,120H0V57.28Z"
           class="shape-fill"></path>
-      </svg> </div>
+      </svg>
+    </div>
+
     <div class="footer-container container">
       <div class="footer-column footer-about">
-        <div class="footer-logo"> <a href="../../index.html" aria-label="Página Inicial da Nave Azul"> <i
-              class="fas fa-rocket nav-logo-icon"></i> <span>Nave Azul</span> </a> </div>
-        <p>Um espaço de acolhimento, informação e recursos para a comunidade do TEA.</p>
+        <div class="footer-logo">
+          <a href="#" data-page="homePage">
+            <i class="fas fa-rocket nav-logo-icon"></i>
+            <span>Nave Azul</span>
+          </a>
+        </div>
+        <p>Um espaço de acolhimento, informação e recursos para a comunidade do Transtorno do Espectro Autista.
+          Navegando juntos por um mundo mais inclusivo.</p>
       </div>
       <div class="footer-column">
         <h4>Links Rápidos</h4>
         <ul>
-          <li><a href="../../index.html" class="footer-link"><i class="fas fa-angle-right"></i> Início</a></li>
-          <li><a href="page_tea.html" class="footer-link"><i class="fas fa-angle-right"></i> Módulo de Exploração</a>
-          </li>
-          <li><a href="page_cuidador.html" class="footer-link"><i class="fas fa-angle-right"></i> Base de Apoio</a></li>
-          <li><a href="page_sobre.html" class="footer-link"><i class="fas fa-angle-right"></i> Sobre a Nave</a></li>
-          <li><a href="#" id="openAccessibilityFromFooter" class="footer-link"><i class="fas fa-angle-right"></i>
-              Acessibilidade</a></li>
+          <li><a href="/index.html" data-page="homePage" class="footer-link"><i class="fas fa-angle-right"></i>
+              Início</a></li>
+          <li><a href="/src/pages/page_tea.html" class="footer-link"><i class="fas fa-angle-right"></i> Universo
+              TEA</a></li>
+          <li><a href="/src/pages/page_cuidador.html" class="footer-link"><i class="fas fa-angle-right"></i>
+              Apoio ao Cuidador</a></li>
+          <li><a href="#" class="footer-link nav-link-to-section"><i class="fas fa-angle-right"></i> Sobre</a></li>
         </ul>
       </div>
-      <div class="footer-column">
-        <h4>Contato</h4>
-        <ul>
-          <li><i class="fas fa-envelope footer-contact-icon"></i> <a href="mailto:contato@naveazul.org.br"
-              class="footer-link">contato@naveazul.org.br</a></li>
-          <li><i class="fas fa-phone footer-contact-icon"></i> (XX) XXXXX-XXXX</li>
-          <li><i class="fas fa-map-marker-alt footer-contact-icon"></i> Brasil</li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Siga-nos</h4>
-        <p>Conecte-se conosco:</p>
-        <div class="social-icons"> <a href="#" aria-label="Facebook" target="_blank" class="social-icon-link"><i
-              class="fab fa-facebook-f"></i></a> <a href="#" aria-label="Instagram" target="_blank"
-            class="social-icon-link"><i class="fab fa-instagram"></i></a> <a href="#" aria-label="Twitter"
-            target="_blank" class="social-icon-link"><i class="fab fa-twitter"></i></a></div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; <span id="currentYear"></span> Portal Nave Azul. Todos os direitos reservados.</p>
-        <p>Desenvolvido com <i class="fas fa-heart footer-heart-icon"></i> e foco na Acessibilidade e Inclusão.</p>
-      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear"></span> Portal Nave Azul. Todos os direitos reservados.</p>
+      <p>Desenvolvido com <i class="fas fa-heart footer-heart-icon"></i> e foco na Acessibilidade e Inclusão.</p>
+    </div>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof window.initComponentsUI === 'function') window.initComponentsUI();
-      if (typeof window.initAccessibility === 'function') window.initAccessibility();
-      if (typeof window.initScreenReader === 'function') window.initScreenReader();
-      if (typeof window.initSobrePage === 'function') window.initSobrePage();
-
-      const currentYearSpan = document.getElementById('currentYear');
-      if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
-
-      const openAccessibilityFromFooter = document.getElementById('openAccessibilityFromFooter');
-      const accessibilityPanel = document.getElementById('accessibilityPanel');
-      const accessibilityToggle = document.getElementById('accessibilityToggle');
-      if (openAccessibilityFromFooter && accessibilityPanel && accessibilityToggle) {
-        openAccessibilityFromFooter.addEventListener('click', (e) => {
-          e.preventDefault();
-          accessibilityPanel.classList.add('active');
-          accessibilityToggle.setAttribute('aria-expanded', 'true');
-          accessibilityPanel.setAttribute('aria-hidden', 'false');
-          accessibilityPanel.querySelector('button:not([disabled])')?.focus();
-        });
-      }
-    });
-  </script>
 </body>
 
 </html>

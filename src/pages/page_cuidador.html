@@ -11,19 +11,19 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=OpenDyslexic:wght@400;700&display=swap"
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
+  <link rel="shortcut icon" href="/src/assets/img/logo_fundo_branco.png" type="image/x-icon" />
   <link rel="stylesheet" href="/src/assets/css/config_global.css">
   <link rel="stylesheet" href="/src/assets/css/header.css">
-
-  <link rel="stylesheet" href="/src/assets/css/page_tea.css">
-
+  <link rel="stylesheet" href="/src/assets/css/page_cuidador.css">
   <link rel="stylesheet" href="/src/assets/css/accessibility.css">
   <link rel="stylesheet" href="/src/assets/css/footer.css">
-  <script src="/src/assets/js/main_script.js" defer></script>
+
+  <script src="/src/assets/js/header.js" defer></script>
   <script src="/src/assets/js/accessibility_handler.js" defer></script>
-  <script src="/src/assets/js/screen_reader.js" defer></script>
-  <script src="/src/assets/js/page_home_interactions.js" defer></script>
-  <script src="/src/assets/js/components_ui.js" defer></script>
+  <script src="/src/assets/js/footer.js" defer></script>
+  <script src="/src/assets/js/main_script.js" defer></script>
+  <script src="/src/assets/js/page_home.js" defer></script>
+  <script src="/src/assets/js/page_cuidador.js" defer></script>
 </head>
 
 <body>
@@ -39,8 +39,7 @@
         <li><a href="/index.html" class="nav-item">Início</a></li>
         <li><a href="/src/pages/page_tea.html" class="nav-item">Universo TEA</a></li>
         <li><a href="/src/pages/page_cuidador.html" class="nav-item active-link">Apoio ao Cuidador</a></li>
-        <li><a href="#aboutSectionAnchor" class="nav-item nav-link-to-section">Sobre</a>
-        </li>
+        <li><a href="/src/pages/page_sobre.html" class="nav-item">Sobre</a></li>
       </ul>
       <button class="nav-toggle" id="navToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
         <span class="hamburger-bar"></span>
@@ -55,166 +54,223 @@
     <i class="fas fa-universal-access"></i>
   </button>
 
-  <div class="page" id="teaPage" role="document" aria-labelledby="teaPageTitleContent">
-    <div class="container page-container">
-      <header class="page-internal-header">
-        <h1 class="page-title" id="teaPageTitleContent"><i class="fas fa-compass-drafting"></i> Módulo de Exploração
-        </h1>
-        <p class="page-subtitle">Suas ferramentas e descobertas intergalácticas a um clique!</p>
-      </header>
-
-      <section class="tools-section exploration-module" aria-labelledby="symbolsTitle">
-        <h3 id="symbolsTitle" class="section-title"><i class="fas fa-satellite"></i> Holo-Dicionário Visual</h3>
-        <p class="section-description">Decodifique o universo da comunicação! Toque nos símbolos para ativar suas
-          descrições e sons.</p>
-        <div class="symbols-grid">
-          <div class="symbol-card" tabindex="0" data-text-to-read="Casa. Meu porto seguro no universo.">
-            <i class="icon fas fa-home-lg-alt"></i>
-            <h4>Lar Doce Lar</h4>
-            <p>Meu porto seguro no universo.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Escola. Estação de Aprendizagem.">
-            <i class="icon fas fa-school"></i>
-            <h4>Estação de Aprendizagem</h4>
-            <p>Onde novas galáxias do saber são exploradas.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Comida. Combustível para a jornada.">
-            <i class="icon fas fa-utensils-alt"></i>
-            <h4>Combustível da Nave</h4>
-            <p>Energia para continuar a exploração.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Banheiro. Câmara de Higienização.">
-            <i class="icon fas fa-person-booth"></i>
-            <h4>Câmara de Higienização</h4>
-            <p>Para recarregar as energias pessoais.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Ajuda. Solicitar suporte da tripulação.">
-            <i class="icon fas fa-hands-helping"></i>
-            <h4>Suporte da Tripulação</h4>
-            <p>Quando um co-piloto é necessário.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Sim. Afirmativo, Comandante.">
-            <i class="icon fas fa-check-circle"></i>
-            <h4>Afirmativo!</h4>
-            <p>Sinal verde para a ação.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Não. Negativo, alterar rota.">
-            <i class="icon fas fa-times-circle"></i>
-            <h4>Negativo.</h4>
-            <p>Abortar missão ou recalcular rota.</p>
-          </div>
-          <div class="symbol-card" tabindex="0" data-text-to-read="Brincar. Recreação Espacial.">
-            <i class="icon fas fa-rocket"></i>
-            <h4>Recreação Espacial</h4>
-            <p>Momento de diversão e exploração lúdica.</p>
-          </div>
+  <!--Acessibilidade-->
+    <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityPanelTitle"
+        aria-hidden="true">
+        <h3 id="accessibilityPanelTitle">Ajustes de Acessibilidade</h3>
+        <div class="accessibility-option">
+            <label for="decreaseFont">Tamanho da Fonte</label>
+            <div class="font-size-controls">
+                <button class="accessibility-button" id="decreaseFont" aria-label="Diminuir fonte">A-</button>
+                <button class="accessibility-button" id="increaseFont" aria-label="Aumentar fonte">A+</button>
+            </div>
         </div>
-      </section>
+        <div class="accessibility-option">
+            <label for="toggleContrast">Alto Contraste</label>
+            <button class="accessibility-button" id="toggleContrast" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="toggleDarkMode">Modo Escuro</label>
+            <button class="accessibility-button" id="toggleDarkMode" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="toggleDyslexicFont">Fonte para Dislexia</label>
+            <button class="accessibility-button" id="toggleDyslexicFont" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="toggleLargeCursor">Cursor Grande</label>
+            <button class="accessibility-button" id="toggleLargeCursor" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="toggleReadingGuide">Guia de Leitura</label>
+            <button class="accessibility-button" id="toggleReadingGuide" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="toggleHighlightLinks">Destacar Links</label>
+            <button class="accessibility-button" id="toggleHighlightLinks" aria-pressed="false">Ativar</button>
+        </div>
+        <div class="accessibility-option">
+            <label for="screenReaderToggle">Leitor de Tela (Experimental)</label>
+            <button class="accessibility-button" id="screenReaderToggle" aria-pressed="false">Ativar</button>
+        </div>
+        <div id="screenReaderControls" style="display: none; text-align: center; margin-top: 10px;">
+            <button class="accessibility-button" id="readPageContent"><i class="fas fa-play"></i> Ler Página</button>
+            <button class="accessibility-button" id="pauseReading"><i class="fas fa-pause"></i> Pausar</button>
+            <button class="accessibility-button" id="stopReading"><i class="fas fa-stop"></i> Parar</button>
+        </div>
+        <div class="accessibility-option" style="margin-top: 15px;">
+            <button class="accessibility-button" id="resetSettings"
+                style="width: 100%; background-color: var(--warm-red);">
+                Redefinir Ajustes
+            </button>
+        </div>
+    </div>
 
-      <section class="tools-section exploration-module" aria-labelledby="calmingToolsTitle">
-        <h3 id="calmingToolsTitle" class="section-title"><i class="fas fa-atom"></i> Laboratório de Serenidade</h3>
-        <p class="section-description">Encontre seu centro gravitacional com estas ferramentas de foco e tranquilidade.
-        </p>
+  <main>
+    <div class="page active" id="cuidadorPage" role="document" aria-labelledby="cuidadorPageTitleContent">
+      <div class="container page-container">
 
-        <div class="tool-item" aria-labelledby="breathingExerciseTitle">
-          <h4 id="breathingExerciseTitle" class="tool-item-title"><i class="fas fa-lungs"></i> Nebulosa da Respiração
-            Cósmica</h4>
-          <div class="breathing-area">
-            <div class="breathing-circle" id="breathingCircle" role="button"
-              aria-label="Círculo de respiração. Toque para iniciar ou pausar o ciclo de respiração cósmica.">
-              <div class="breathing-circle-inner"></div>
-              <div class="breathing-text-container">
-                <span id="breathingGuideText">Iniciar Ciclo</span>
-                <span id="breathingInstructionText">Sincronize com o universo</span>
+        <header class="page-internal-header">
+          <div class="header-content">
+            <h1 class="page-title" id="cuidadorPageTitleContent"><i class="fas fa-hands-helping"></i> Apoio ao Cuidador
+            </h1>
+            <p class="page-subtitle">Recursos essenciais para quem cuida de pessoas com TEA</p>
+          </div>
+          
+          <!-- Ilustração futura          
+          <div class="header-illustration">
+            <img src="https://via.placeholder.com/400x200/0C1627/00BEFF?text=Ilustração+Cuidador"
+              alt="Ilustração de apoio ao cuidador" class="header-image">
+          </div>
+          -->
+
+        </header>
+
+        <section class="support-module" aria-labelledby="resourcesTitle">
+          <h2 id="resourcesTitle" class="section-title"><i class="fas fa-book-medical"></i> Recursos Essenciais</h2>
+          <p class="section-description">Materiais selecionados para ajudar no dia a dia do cuidador</p>
+
+          <div class="resource-grid">
+            <div class="resource-card">
+              <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
+              <h3>Guia de Primeiros Passos</h3>
+              <p>Um manual completo para cuidadores iniciantes, com orientações práticas e dicas importantes.</p>
+              <a href="#" class="btn-resource" download><i class="fas fa-download"></i> Baixar Guia</a>
+            </div>
+
+            <div class="resource-card">
+              <div class="card-icon"><i class="fas fa-video"></i></div>
+              <h3>Vídeo Aulas</h3>
+              <p>Playlist com técnicas de comunicação, manejo de crises e atividades terapêuticas.</p>
+              <a href="#" class="btn-resource" target="_blank"><i class="fas fa-external-link-alt"></i> Acessar
+                Vídeos</a>
+            </div>
+
+            <div class="resource-card">
+              <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
+              <h3>Agenda do Cuidador</h3>
+              <p>Modelo de agenda para organizar consultas, terapias e atividades diárias.</p>
+              <a href="#" class="btn-resource" download><i class="fas fa-download"></i> Baixar Modelo</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="support-module" aria-labelledby="selfCareTitle">
+          <h2 id="selfCareTitle" class="section-title"><i class="fas fa-heartbeat"></i> Autocuidado</h2>
+          <p class="section-description">Porque cuidar de quem cuida é fundamental</p>
+
+          <div class="selfcare-tabs">
+            <div class="tab-buttons">
+              <button class="tab-button active" data-tab="relaxation">Relaxamento</button>
+              <button class="tab-button" data-tab="community">Comunidade</button>
+              <button class="tab-button" data-tab="professionals">Profissionais</button>
+            </div>
+
+            <div class="tab-content active" id="relaxation">
+              <div class="relaxation-content">
+                <div class="breathing-exercise">
+                  <h4><i class="fas fa-lungs"></i> Exercício de Respiração</h4>
+                  <div class="breathing-circle">
+                    <div class="breathing-animation"></div>
+                    <span class="breathing-text">Inspire... Expire...</span>
+                  </div>
+                  <button class="btn-resource" id="startBreathing"><i class="fas fa-play"></i> Iniciar</button>
+                </div>
+                <div class="audio-guides">
+                  <h4><i class="fas fa-headphones"></i> Guias de Relaxamento</h4>
+                  <div class="audio-controls">
+                    <button class="audio-button" data-audio="meditation"><i class="fas fa-spa"></i> Meditação</button>
+                    <button class="audio-button" data-audio="nature"><i class="fas fa-tree"></i> Sons da
+                      Natureza</button>
+                  </div>
+                  <audio id="audioPlayer" src=""></audio>
+                </div>
               </div>
             </div>
-            <div class="breathing-controls">
-              <button class="control-button futuristic-button" id="startStopBreathingBtn">
-                <i class="fas fa-play"></i> Iniciar
-              </button>
+
+            <div class="tab-content" id="community">
+              <div class="community-content">
+                <h4><i class="fas fa-users"></i> Conecte-se com outros cuidadores</h4>
+                <ul class="community-links">
+                  <li><a href="#"><i class="fas fa-comments"></i> Fórum de Discussão</a></li>
+                  <li><a href="#"><i class="fas fa-calendar-alt"></i> Eventos e Encontros</a></li>
+                  <li><a href="#"><i class="fas fa-hands-helping"></i> Grupos de Apoio</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tab-content" id="professionals">
+              <div class="professionals-content">
+                <h4><i class="fas fa-user-md"></i> Busca por Profissionais</h4>
+                <div class="search-professionals">
+                  <input type="text" placeholder="Busque por especialidade ou localidade">
+                  <button class="btn-resource"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                <div class="professional-types">
+                  <div class="professional-card">
+                    <i class="fas fa-brain"></i>
+                    <h5>Psicólogos</h5>
+                  </div>
+                  <div class="professional-card">
+                    <i class="fas fa-comment-medical"></i>
+                    <h5>Fonoaudiólogos</h5>
+                  </div>
+                  <div class="professional-card">
+                    <i class="fas fa-child"></i>
+                    <h5>Terapeutas Ocupacionais</h5>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="tool-item" aria-labelledby="calmingSoundsTitle">
-          <h4 id="calmingSoundsTitle" class="tool-item-title"><i class="fas fa-satellite-dish"></i> Transmissor de Ecos
-            Estelares</h4>
-          <div class="audio-player">
-            <div class="audio-controls">
-              <button class="audio-button futuristic-button" data-sound="rain" data-src="/src/assets/sounds/rain.mp3"
-                aria-label="Ouvir Chuva Cósmica">
-                <i class="fas fa-cloud-rain"></i> Chuva Cósmica
-              </button>
-              <button class="audio-button futuristic-button" data-sound="forest" data-src="/src/assets/sounds/forest.mp3"
-                aria-label="Ouvir Floresta Alienígena">
-                <i class="fas fa-pastafarianism"></i> Floresta Alienígena
-              </button>
-              <button class="audio-button futuristic-button" data-sound="meditation"
-                data-src="/src/assets/sounds/meditation.mp3" aria-label="Ouvir Meditação Zen do Vácuo">
-                <i class="fas fa-om"></i> Zen do Vácuo
-              </button>
-              <button class="audio-button futuristic-button" data-sound="waves" data-src="assets/sounds/waves.mp3"
-                aria-label="Ouvir Ondas do Mar Nebuloso">
-                <i class="fas fa-water"></i> Mar Nebuloso
-              </button>
+        <section class="support-module" aria-labelledby="emergencyTitle">
+          <h2 id="emergencyTitle" class="section-title"><i class="fas fa-first-aid"></i> Emergências</h2>
+          <p class="section-description">Informações importantes para situações críticas</p>
+
+          <div class="emergency-grid">
+            <div class="emergency-card">
+              <div class="emergency-header">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Contatos de Emergência</h3>
+              </div>
+              <ul class="emergency-contacts">
+                <li><strong>SAMU:</strong> 192</li>
+                <li><strong>Bombeiros:</strong> 193</li>
+                <li><strong>Disque Saúde:</strong> 136</li>
+                <li><strong>CVV:</strong> 188</li>
+              </ul>
             </div>
-            <audio id="audioElement" style="display:none;"></audio>
-          </div>
-        </div>
-      </section>
 
-      <section class="tools-section exploration-module" aria-labelledby="gamesTitle">
-        <h3 id="gamesTitle" class="section-title"><i class="fas fa-gamepad-alt"></i> Holodeck Recreativo-Educacional
-        </h3>
-        <p class="section-description">Prepare-se para missões divertidas que acalmam a mente e expandem seus horizontes
-          de conhecimento!</p>
-        <div class="games-grid">
-          <div class="game-card placeholder">
-            <div class="game-icon-wrapper"><i class="fas fa-shapes"></i></div>
-            <h4>Conector de Constelações</h4>
-            <p>Um jogo de ligar pontos para formar estrelas e aprender sobre o espaço. (Em breve!)</p>
-            <span class="game-status-badge">Em Desenvolvimento</span>
-          </div>
-          <div class="game-card placeholder">
-            <div class="game-icon-wrapper"><i class="fas fa-palette"></i></div>
-            <h4>Colorindo Galáxias</h4>
-            <p>Relaxe pintando nebulosas e planetas com cores vibrantes. (Em breve!)</p>
-            <span class="game-status-badge">Em Desenvolvimento</span>
-          </div>
-          <div class="game-card placeholder">
-            <div class="game-icon-wrapper"><i class="fas fa-sort-amount-down"></i></div>
-            <h4>Organizador de Asteroides</h4>
-            <p>Um desafio de lógica para organizar objetos espaciais por cor ou forma. (Em breve!)</p>
-            <span class="game-status-badge">Em Desenvolvimento</span>
-          </div>
-          <div class="game-card placeholder">
-            <div class="game-icon-wrapper"><i class="fas fa-puzzle-piece"></i></div>
-            <h4>Quebra-Cabeça Cósmico</h4>
-            <p>Monte imagens do universo e descubra fatos interessantes. (Em breve!)</p>
-            <span class="game-status-badge">Em Desenvolvimento</span>
-          </div>
-        </div>
-      </section>
+            <div class="emergency-card">
+              <div class="emergency-header">
+                <i class="fas fa-procedures"></i>
+                <h3>Hospitais Especializados</h3>
+              </div>
+              <ul class="emergency-contacts">
+                <li><strong>Hospital X:</strong> (11) 1234-5678</li>
+                <li><strong>Clínica Y:</strong> (11) 9876-5432</li>
+                <li><strong>Instituto Z:</strong> (11) 2468-1357</li>
+              </ul>
+            </div>
 
-      <section class="tools-section exploration-module" aria-labelledby="visualRoutinesTitle">
-        <h3 id="visualRoutinesTitle" class="section-title"><i class="fas fa-tasks"></i> Planejador de Missões Diárias
-        </h3>
-        <p class="section-description">Organize suas tarefas e atividades como um verdadeiro comandante de expedição!
-        </p>
-        <div class="visual-routines">
-          <div class="routine-placeholder futuristic-placeholder">
-            <i class="fas fa-clipboard-list-check"></i>
-            <p>Em breve: Sua central de comando para criar e visualizar planos de missão diários e semanais com ícones e
-              alertas personalizáveis!</p>
-            <img
-              src="https://via.placeholder.com/600x200/00BEFF/0C1627?text=Interface+do+Planejador+de+Missões+(Em+Breve)"
-              alt="Esboço da interface do planejador de missões diárias da Nave Azul"
-              style="max-width:100%; border-radius: var(--border-radius); margin-top:1rem; opacity: 0.8; border: 1px solid rgba(var(--tech-cyan-rgb), 0.3);">
+            <div class="emergency-card">
+              <div class="emergency-header">
+                <i class="fas fa-file-medical"></i>
+                <h3>Documentos Importantes</h3>
+              </div>
+              <div class="emergency-docs">
+                <button class="btn-resource"><i class="fas fa-download"></i> Lista de Medicamentos</button>
+                <button class="btn-resource"><i class="fas fa-download"></i> Histórico Médico</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-  </div>
+  </main>
+
   <footer class="main-footer">
     <div class="footer-shape-divider"> <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -238,41 +294,17 @@
       <div class="footer-column">
         <h4>Links Rápidos</h4>
         <ul>
-          <li><a href="#" data-page="homePage" class="footer-link"><i class="fas fa-angle-right"></i>
+          <li><a href="/index.html" data-page="homePage" class="footer-link"><i class="fas fa-angle-right"></i>
               Início</a></li>
-          <li><a href="#" data-page="teaPage" class="footer-link"><i class="fas fa-angle-right"></i> Universo
+          <li><a href="/src/pages/page_tea.html" class="footer-link"><i class="fas fa-angle-right"></i> Universo
               TEA</a></li>
-          <li><a href="#" data-page="cuidadorPage" class="footer-link"><i class="fas fa-angle-right"></i>
+          <li><a href="#" class="footer-link"><i class="fas fa-angle-right"></i>
               Apoio ao Cuidador</a></li>
-          <li><a href="#aboutSectionAnchor" data-page="homePage" class="footer-link nav-link-to-section"><i
+          <li><a href="/src/pages/page_sobre.html" class="footer-link nav-link-to-section"><i
                 class="fas fa-angle-right"></i> Sobre</a></li>
-          <li><a href="#" id="openAccessibilityFromFooter" class="footer-link"><i class="fas fa-angle-right"></i>
-              Acessibilidade</a></li>
         </ul>
       </div>
-      <div class="footer-column">
-        <h4>Contato</h4>
-        <ul>
-          <li><i class="fas fa-envelope footer-contact-icon"></i> <a href="mailto:contato@naveazul.org.br"
-              class="footer-link">contato@naveazul.org.br</a></li>
-          <li><i class="fas fa-phone footer-contact-icon"></i> (XX) XXXXX-XXXX (Fictício)</li>
-          <li><i class="fas fa-map-marker-alt footer-contact-icon"></i> Localização Fictícia, Brasil</li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Siga-nos</h4>
-        <p>Conecte-se conosco nas redes sociais:</p>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn do Portal Nave Azul" target="_blank" class="social-icon-link"><i
-              class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
+
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="currentYear"></span> Portal Nave Azul. Todos os direitos reservados.</p>

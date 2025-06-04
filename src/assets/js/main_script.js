@@ -1,131 +1,65 @@
 // src/assets/js/main.js (ou main_script.js)
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Nave Azul: DOM completamente carregado. Iniciando scripts principais...");
+    console.log("Nave Azul: DOM principal carregado. Iniciando módulos...");
 
-    // 1. Inicializa Componentes de UI Globais (Navbar, Partículas, etc.)
-    if (typeof window.initComponentsUI === 'function') {
-        window.initComponentsUI();
+    // 1. Inicializa Header (Navbar, Partículas, Scroll Effect)
+    if (typeof window.initHeader === 'function') {
+        window.initHeader();
     } else {
-        console.error("Nave Azul ERRO: initComponentsUI não está definida. Verifique components_ui.js");
+        console.error("Nave Azul ERRO: initHeader não está definida. Verifique header.js");
     }
 
-    // 2. Inicializa o Handler de Acessibilidade Global
-    if (typeof window.initAccessibility === 'function') {
-        window.initAccessibility();
+    // 2. Inicializa a Suíte de Acessibilidade Global (Painel + Leitor de Tela)
+    if (typeof window.initAccessibilitySuite === 'function') { // Note o nome da função
+        window.initAccessibilitySuite();
     } else {
-        console.error("Nave Azul ERRO: initAccessibility não está definida. Verifique accessibility_handler.js");
+        console.error("Nave Azul ERRO: initAccessibilitySuite não está definida. Verifique accessibility.js");
     }
 
-    // 3. Inicializa o Leitor de Tela Global
-    if (typeof window.initScreenReader === 'function') {
-        window.initScreenReader();
+    // 3. Inicializa o Footer Global
+    if (typeof window.initFooter === 'function') {
+        window.initFooter();
     } else {
-        console.error("Nave Azul ERRO: initScreenReader não está definida. Verifique screen_reader.js");
-    }
-
-    // 4. Detecta a página atual e chama seu inicializador específico
-    //    Vamos usar o ID do elemento com a classe '.page.active' ou um ID no body.
-    //    No seu HTML, cada página principal (a div com class="page") tem um ID.
-    const activePageElement = document.querySelector('main > .page.active'); // Procura dentro do <main>
-    let currentPageId = null;
-
-    if (activePageElement && activePageElement.id) {
-        currentPageId = activePageElement.id;
-        console.log(`Nave Azul: Página ativa detectada: ${currentPageId}`);
-
-        const initFunctionName = `init${currentPageId.charAt(0).toUpperCase() + currentPageId.slice(1)}`; // Ex: initHomePage, initTeaPage
-
-        if (typeof window[initFunctionName] === 'function') {
-            if (!activePageElement.dataset.initialized) { // Evita re-inicializar se já foi
-                console.log(`Nave Azul: Inicializando lógica específica para ${initFunctionName}`);
-                window[initFunctionName]();
-                activePageElement.dataset.initialized = 'true';
-            }
-        } else {
-            console.warn(`Nave Azul: Função de inicialização ${initFunctionName} não encontrada para a página <span class="math-inline">\{currentPageId\}\. Verifique o script pages/</span>{currentPageId}.js`);
-        }
-    } else {
-        // Fallback se não encontrar uma página ativa com ID (ex: se for uma página sem a estrutura .page)
-        // Para o index.html, se a div principal tiver id="homePage"
-        const bodyId = document.body.id;
-        if (bodyId && bodyId.endsWith('Page')) { // Convenção: body com id tipo 'homePageBody' ou 'teaPageBody'
-             currentPageId = bodyId.replace('Body', ''); // Remove 'Body' do final se existir
-             const initFunctionName = `init${currentPageId.charAt(0).toUpperCase() + currentPageId.slice(1)}`;
-             if (typeof window[initFunctionName] === 'function') {
-                console.log(`Nave Azul: Inicializando lógica específica para ${initFunctionName} (detectado pelo body ID)`);
-                window[initFunctionName]();
-             }
-        } else {
-            console.warn("Nave Azul: Não foi possível detectar a página atual para inicializar scripts específicos de página.");
-        }
-    }
-
-
-    // 5. Lógica Comum do Footer (Ano Atual)
-    const currentYearSpan =// src/assets/js/main.js (ou main_script.js)
-
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Nave Azul: DOM completamente carregado. Iniciando scripts principais...");
-
-    // 1. Inicializa Componentes de UI Globais (Navbar, Partículas, etc.)
-    if (typeof window.initComponentsUI === 'function') {
-        window.initComponentsUI();
-    } else {
-        console.error("Nave Azul ERRO: initComponentsUI não está definida. Verifique components_ui.js");
-    }
-
-    // 2. Inicializa o Handler de Acessibilidade Global
-    if (typeof window.initAccessibility === 'function') {
-        window.initAccessibility();
-    } else {
-        console.error("Nave Azul ERRO: initAccessibility não está definida. Verifique accessibility_handler.js");
-    }
-
-    // 3. Inicializa o Leitor de Tela Global
-    if (typeof window.initScreenReader === 'function') {
-        window.initScreenReader();
-    } else {
-        console.error("Nave Azul ERRO: initScreenReader não está definida. Verifique screen_reader.js");
+        console.error("Nave Azul ERRO: initFooter não definida. Verifique footer.js");
     }
 
     // 4. Detecta a página atual e chama seu inicializador específico
-    //    Vamos usar o ID do elemento com a classe '.page.active' ou um ID no body.
-    //    No seu HTML, cada página principal (a div com class="page") tem um ID.
-    const activePageElement = document.querySelector('main > .page.active'); // Procura dentro do <main>
-    let currentPageId = null;
+    // Para index.html, assumimos que é a 'homePage'
+    // Esta lógica de detecção pode ser mais robusta para MPA
+    const bodyId = document.body.id; // Ex: <body id="homePageBody">
 
-    if (activePageElement && activePageElement.id) {
-        currentPageId = activePageElement.id;
-        console.log(`Nave Azul: Página ativa detectada: ${currentPageId}`);
+    // Se for index.html, a div principal da página deve ter id="homePage" e class="page active"
+    const activePageDiv = document.querySelector('main > .page.active');
 
-        const initFunctionName = `init${currentPageId.charAt(0).toUpperCase() + currentPageId.slice(1)}`; // Ex: initHomePage, initTeaPage
-
-        if (typeof window[initFunctionName] === 'function') {
-            if (!activePageElement.dataset.initialized) { // Evita re-inicializar se já foi
-                console.log(`Nave Azul: Inicializando lógica específica para ${initFunctionName}`);
-                window[initFunctionName]();
-                activePageElement.dataset.initialized = 'true';
+    if (activePageDiv && activePageDiv.id === 'homePage') {
+        if (typeof window.initHomePage === 'function') {
+            if (!activePageDiv.dataset.initialized) {
+                console.log("Nave Azul: Inicializando lógica específica para initHomePage");
+                window.initHomePage();
+                activePageDiv.dataset.initialized = 'true';
             }
         } else {
-            console.warn(`Nave Azul: Função de inicialização ${initFunctionName} não encontrada para a página <span class="math-inline">\{currentPageId\}\. Verifique o script pages/</span>{currentPageId}.js`);
+            console.warn("Nave Azul: Função initHomePage não encontrada. Verifique pages/page_home.js");
+        }
+    } else if (bodyId === 'homePageBody') { // Outra forma de checar se é a home
+         if (typeof window.initHomePage === 'function') {
+            if (!body.dataset.initialized) {
+                console.log("Nave Azul: Inicializando lógica específica para initHomePage (via body ID)");
+                window.initHomePage();
+                body.dataset.initialized = 'true';
+            }
+        } else {
+            console.warn("Nave Azul: Função initHomePage não encontrada (via body ID). Verifique pages/page_home.js");
         }
     } else {
-        // Fallback se não encontrar uma página ativa com ID (ex: se for uma página sem a estrutura .page)
-        // Para o index.html, se a div principal tiver id="homePage"
-        const bodyId = document.body.id;
-        if (bodyId && bodyId.endsWith('Page')) { // Convenção: body com id tipo 'homePageBody' ou 'teaPageBody'
-             currentPageId = bodyId.replace('Body', ''); // Remove 'Body' do final se existir
-             const initFunctionName = `init${currentPageId.charAt(0).toUpperCase() + currentPageId.slice(1)}`;
-             if (typeof window[initFunctionName] === 'function') {
-                console.log(`Nave Azul: Inicializando lógica específica para ${initFunctionName} (detectado pelo body ID)`);
-                window[initFunctionName]();
-             }
-        } else {
-            console.warn("Nave Azul: Não foi possível detectar a página atual para inicializar scripts específicos de página.");
-        }
+        // Se não for a homePage, e este main.js for compartilhado,
+        // ele tentaria detectar outras páginas aqui ou não faria nada específico da página.
+        // Para um MPA puro, o main.js em cada página poderia ser mais simples
+        // ou esta lógica de detecção seria mais sofisticada.
+        console.log("Nave Azul: Não é a página inicial, ou a página ativa não foi detectada corretamente para inicialização específica.");
     }
 
+    console.log("Nave Azul: Inicialização principal concluída.");
+});
 
-    // 5. Lógica Comum do Footer (Ano Atual)
-    const currentYearSpan =

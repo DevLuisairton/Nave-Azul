@@ -2,45 +2,36 @@
 window.initHomePage = function() {
     console.log("Nave Azul: Inicializando interações da Página Inicial (Home)...");
 
-    // Se você usa a biblioteca AOS para animações de scroll na home:
+    // Se você ainda usa AOS nesta página:
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
             once: true,
             offset: 50,
         });
-        // É importante chamar AOS.refresh() se o conteúdo da home for alterado dinamicamente
-        // ou após a navegação SPA se os elementos já estiverem no DOM mas escondidos.
-        // No modelo MPA, o AOS.init() na carga da página é suficiente.
+        // Se a home tiver conteúdo carregado dinamicamente que precisa do AOS após a carga inicial,
+        // você pode precisar chamar AOS.refresh() aqui ou após essas cargas.
+        // Para um MPA simples, AOS.init() na carga da página é geralmente suficiente.
     } else {
-        // console.warn("Nave Azul: Biblioteca AOS não encontrada para animações da home.");
+        // console.warn("Nave Azul: Biblioteca AOS não encontrada para animações da home page.");
     }
 
-    // Animação do astronauta (CSS já faz a flutuação, JS pode adicionar mais)
-    const astronautContainer = document.getElementById('astronautContainer');
-    if (astronautContainer) {
-        // Exemplo: Adicionar uma classe após um delay para uma entrada mais dramática
-        // setTimeout(() => {
-        //     astronautContainer.classList.add('astronaut-entered');
-        // }, 300); // Se tiver uma classe .astronaut-entered no CSS
-    }
+    // Lógica do astronauta já está no CSS (animação floatAstronaut)
+    // e a entrada com fadeInAstronaut também está no CSS.
+    // Se precisar de interações JS mais complexas com o astronauta, adicione aqui.
 
-    // Lógica para os .action-card que agora são <a> e navegam para outras páginas HTML
-    // Não precisam de JS para a navegação em si (o href faz isso).
-    // Mas podem ter JS para efeitos visuais no clique, se desejado, ANTES da navegação.
+    // Os .action-card agora são <a> com href, não precisam de JS para navegação básica.
+    // Se quiser adicionar efeitos JS no clique ANTES de navegar:
     const actionCards = document.querySelectorAll('#homePage .action-card');
     actionCards.forEach(card => {
         card.addEventListener('click', function(e) {
-            // Exemplo: Adicionar um efeito de "clique" antes de navegar
-            // this.classList.add('clicked');
-            // setTimeout(() => {
-            //    // A navegação ocorrerá normalmente pelo href da tag <a>
-            //    // Se fosse um <button> navegando via JS: window.location.href = this.dataset.href;
-            // }, 150); // Pequeno delay para o efeito visual
-            console.log(`Nave Azul: Action card '${this.querySelector('h3').textContent.trim()}' clicado. Navegando para: ${this.href}`);
+            // Exemplo: adicionar uma classe para um feedback visual rápido
+            // this.classList.add('action-card-clicked');
+            // setTimeout(() => this.classList.remove('action-card-clicked'), 300);
+            // A navegação para o href ocorrerá naturalmente.
+            console.log(`Nave Azul: Card de ação '${this.querySelector('h3').textContent.trim()}' clicado, navegando para ${this.href}`);
         });
     });
-
 
     console.log("Nave Azul: Interações da Página Inicial carregadas.");
 };
